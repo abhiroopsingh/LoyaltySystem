@@ -12,6 +12,21 @@ The clients and server both use [GRPC](http://www.grpc.io/) to communicate using
 
 
 ## Build
+
+To build and work with this system, you will require both GRPC and protocol buffers.
+
+### Protobufs
+Refer to the protocol buffer documentation for your platform. On OSX, 
+```
+brew install protobuf
+```
+
+### GRPC
+For the python portions, run the commands:
+
+```
+pip install grpcio grpcio-tools
+```
 Coming soon.
 
 ## Test
