@@ -17,7 +17,6 @@ message RedemptionResponse {
 	AccountBalance balance = 3;
 }
 
-
 message BalanceRequest {
 	Customer customer = 1;
 }
@@ -25,7 +24,6 @@ message BalanceRequest {
 message Balances {
 	repeated AccountBalance balances = 1;
 }
-
 
 service CustomerServer {
 	rpc Redeem (RedemptionRequest) returns (RedemptionResponse) {}

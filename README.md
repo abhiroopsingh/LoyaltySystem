@@ -12,6 +12,10 @@ The clients and server both use [GRPC](http://www.grpc.io/) to communicate using
 
 
 ## Build
+To avoid making everyone set up the build on their platform, the already generated
+protocol buffers and GRPC bindings are included already committed in this repo.
+
+If you would like to rebuild them, look at the instructions below:
 
 To build and work with this system, you will require both GRPC and protocol buffers.
 
@@ -20,6 +24,7 @@ Refer to the protocol buffer documentation for your platform. On OSX,
 ```
 brew install protobuf
 ```
+
 
 ### GRPC
 For the python portions, run the commands:
@@ -33,4 +38,7 @@ Coming soon.
 Coming soon.
 
 ## Run
-Coming soon.
+
+To run the server you need to have GRPC installed (see above).
+
+Further instructions coming soon.
