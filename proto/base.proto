@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+
+message Customer {
+	int64 id = 1;
+	string name = 2;
+	string username = 3;
+}
+
+message Business {
+	string name = 1;
+	int64 id = 2;
+}
+
+message AccountBalance {
+	Business business = 1;
+	int32 point_balance = 2;
+}
+
+// A RedemptionOpportunity represents
+// something that a that have a given amount
+// of points.
+message RedemptionOpportunity {
+	string name = 1;
+	int32 required_points = 2;
+	int64 id = 3;
+}

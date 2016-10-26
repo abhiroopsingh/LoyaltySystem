@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "base.proto";
+
+
+message RedemptionRequest {
+	// If this request is authenticated, then
+	// this customer field is optional; the customer
+	// will be inferred.
+	Customer customer = 1;
+	int32 opportunity_id = 2;
+}
+
+message RedemptionResponse {
+	string message = 1;
+	bool success = 2;
+	AccountBalance balance = 3;
+}
+
+
+message BalanceRequest {
+	Customer customer = 1;
+}
+
+message Balances {
+	repeated AccountBalance balances = 1;
+}
+
+
+service CustomerServer {
+	rpc Redeem (RedemptionRequest) returns (RedemptionResponse) {}
+	rpc GetBalances (BalanceRequest) returns (Balances) {}
+}
+
