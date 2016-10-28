@@ -16,17 +16,17 @@ message StartAuthRequest {
 message StartAuthResponse {
 	string username = 1;
 	int64 id = 2;
-	int64 nonce = 3;
+	string nonce = 3;
 }
 
 message DoAuthRequest {
 	int64 id = 1;
-	string pass_hash = 2;
+	string hash_token = 2;
 }
 
 
 
-service LoginService {
+service Login {
 	// StartAuth is the beginning of the
 	// authentication flow. The client sends a
 	// username they would like to authenticate

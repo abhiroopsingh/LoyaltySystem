@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"%\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\x03\".\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x11\n\tpass_hash\x18\x02 \x01(\t2k\n\x0cLoginService\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12%\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\t.UserAuth\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nauth.proto\"%\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t2d\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12%\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\t.UserAuth\"\x00\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -118,8 +118,8 @@ _STARTAUTHRESPONSE = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='nonce', full_name='StartAuthResponse.nonce', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -155,7 +155,7 @@ _DOAUTHREQUEST = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='pass_hash', full_name='DoAuthRequest.pass_hash', index=1,
+      name='hash_token', full_name='DoAuthRequest.hash_token', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -174,7 +174,7 @@ _DOAUTHREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=157,
-  serialized_end=203,
+  serialized_end=204,
 )
 
 DESCRIPTOR.message_types_by_name['UserAuth'] = _USERAUTH
@@ -218,7 +218,7 @@ from grpc.framework.common import cardinality
 from grpc.framework.interfaces.face import utilities as face_utilities
 
 
-class LoginServiceStub(object):
+class LoginStub(object):
 
   def __init__(self, channel):
     """Constructor.
@@ -227,18 +227,18 @@ class LoginServiceStub(object):
       channel: A grpc.Channel.
     """
     self.StartAuth = channel.unary_unary(
-        '/LoginService/StartAuth',
+        '/Login/StartAuth',
         request_serializer=StartAuthRequest.SerializeToString,
         response_deserializer=StartAuthResponse.FromString,
         )
     self.DoAuth = channel.unary_unary(
-        '/LoginService/DoAuth',
+        '/Login/DoAuth',
         request_serializer=DoAuthRequest.SerializeToString,
         response_deserializer=UserAuth.FromString,
         )
 
 
-class LoginServiceServicer(object):
+class LoginServicer(object):
 
   def StartAuth(self, request, context):
     """StartAuth is the beginning of the
@@ -263,7 +263,7 @@ class LoginServiceServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_LoginServiceServicer_to_server(servicer, server):
+def add_LoginServicer_to_server(servicer, server):
   rpc_method_handlers = {
       'StartAuth': grpc.unary_unary_rpc_method_handler(
           servicer.StartAuth,
@@ -277,11 +277,11 @@ def add_LoginServiceServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'LoginService', rpc_method_handlers)
+      'Login', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
 
 
-class BetaLoginServiceServicer(object):
+class BetaLoginServicer(object):
   def StartAuth(self, request, context):
     """StartAuth is the beginning of the
     authentication flow. The client sends a
@@ -300,7 +300,7 @@ class BetaLoginServiceServicer(object):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
-class BetaLoginServiceStub(object):
+class BetaLoginStub(object):
   def StartAuth(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     """StartAuth is the beginning of the
     authentication flow. The client sends a
@@ -321,36 +321,36 @@ class BetaLoginServiceStub(object):
   DoAuth.future = None
 
 
-def beta_create_LoginService_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
+def beta_create_Login_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
   request_deserializers = {
-    ('LoginService', 'DoAuth'): DoAuthRequest.FromString,
-    ('LoginService', 'StartAuth'): StartAuthRequest.FromString,
+    ('Login', 'DoAuth'): DoAuthRequest.FromString,
+    ('Login', 'StartAuth'): StartAuthRequest.FromString,
   }
   response_serializers = {
-    ('LoginService', 'DoAuth'): UserAuth.SerializeToString,
-    ('LoginService', 'StartAuth'): StartAuthResponse.SerializeToString,
+    ('Login', 'DoAuth'): UserAuth.SerializeToString,
+    ('Login', 'StartAuth'): StartAuthResponse.SerializeToString,
   }
   method_implementations = {
-    ('LoginService', 'DoAuth'): face_utilities.unary_unary_inline(servicer.DoAuth),
-    ('LoginService', 'StartAuth'): face_utilities.unary_unary_inline(servicer.StartAuth),
+    ('Login', 'DoAuth'): face_utilities.unary_unary_inline(servicer.DoAuth),
+    ('Login', 'StartAuth'): face_utilities.unary_unary_inline(servicer.StartAuth),
   }
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
 
 
-def beta_create_LoginService_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
+def beta_create_Login_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
   request_serializers = {
-    ('LoginService', 'DoAuth'): DoAuthRequest.SerializeToString,
-    ('LoginService', 'StartAuth'): StartAuthRequest.SerializeToString,
+    ('Login', 'DoAuth'): DoAuthRequest.SerializeToString,
+    ('Login', 'StartAuth'): StartAuthRequest.SerializeToString,
   }
   response_deserializers = {
-    ('LoginService', 'DoAuth'): UserAuth.FromString,
-    ('LoginService', 'StartAuth'): StartAuthResponse.FromString,
+    ('Login', 'DoAuth'): UserAuth.FromString,
+    ('Login', 'StartAuth'): StartAuthResponse.FromString,
   }
   cardinalities = {
     'DoAuth': cardinality.Cardinality.UNARY_UNARY,
     'StartAuth': cardinality.Cardinality.UNARY_UNARY,
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-  return beta_implementations.dynamic_stub(channel, 'LoginService', cardinalities, options=stub_options)
+  return beta_implementations.dynamic_stub(channel, 'Login', cardinalities, options=stub_options)
 # @@protoc_insertion_point(module_scope)
