@@ -11,11 +11,12 @@ class User(object):
     name = attr.ib()
     passhash = attr.ib()
     token = attr.ib(default="")
-    balances = attr.ib(default=attr.Factory(list))
     
 @attr.s
 class AccountBalance(object):
+    id = attr.ib()
     businessid = attr.ib()
+    customerid = attr.ib()
     points = attr.ib(default=0)
 
 @attr.s
