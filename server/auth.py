@@ -16,7 +16,7 @@ class LoginSvc(apb.LoginServicer):
         self.db = db
         
     def StartAuth(self, request, context):
-        user = self.db.find_username(request.username)
+        user = self.db.find_user(username=request.username)
         nonce, token = self.generate_token(user)
         user.token = token
         self.db.update_user(user)
@@ -29,7 +29,10 @@ class LoginSvc(apb.LoginServicer):
 
     
     def DoAuth(self, request, context):
-        user = self.db.find_userid(request.id)
+        user = self.db.find_user(id=request.id)
+        if not user:
+            return apb.DoAuthResponse(success = False)
+        
         req_token = request.hash_token
         good_token = user.token
         if good_token == req_token:

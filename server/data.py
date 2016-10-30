@@ -1,25 +1,24 @@
-from collections import namedtuple
+import attr
 
 # Represents the basic representations of domain objects that will be used in the system.
 
 
 
-User = namedtuple("User", [
-    "id",
-    "username",
-    "name",
-    "passhash",
-    "token",
-    "balances"
-])
+@attr.s
+class User(object):
+    id = attr.ib()
+    username = attr.ib()
+    name = attr.ib()
+    passhash = attr.ib()
+    token = attr.ib(default="")
+    balances = attr.ib(default=attr.Factory(list))
+    
+@attr.s
+class AccountBalance(object):
+    businessid = attr.ib()
+    points = attr.ib(default=0)
 
-AccountBalance = namedtuple("AccountBalance", [
-    "businessid",
-    "points",
-])
-
-
-Business = namedtuple("Business", [
-    "name",
-    "id"
-])
+@attr.s
+class Business(object):
+    name = attr.ib()
+    id = attr.ib()

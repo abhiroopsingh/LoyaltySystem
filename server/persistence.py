@@ -4,19 +4,23 @@
 # For tests and local executions it can be run in memory,
 # or it can scale outward to one (or more sharded) databases.
 
-class MemoryPersist:
-    def __init__(self):
-        self.usernames = {}
-        self.userids = {}
-        self.tokens = {}
-        self.businesses = {}
+class BasePersistence(object):
 
-    def find_username(self, username):
-        return self.usernames.get(username, None)
+    def find_user(self, **kwargs):
+        """ Find a user by looking for the
+        matching value for the attribute
+        specified in kwargs. Return None if not found."""
+        raise NotImplementedError()
 
     def update_user(self, user):
-        self.add_user(user)
+        raise NotImplementedError()
 
-    def add_user(self, userinfo):
-        self.usernames[userinfo.username] = userinfo
-        self.userids[userinfo.userid] = userinfo
+    def find_business(self, **kwargs):
+        """ Find a business by looking for the
+        matching value for the attribute in kwargs.
+        Returns None if not found."""
+        raise NotImplementedError()
+
+    def update_business(self, business):
+        raise NotImplementedError()
+    

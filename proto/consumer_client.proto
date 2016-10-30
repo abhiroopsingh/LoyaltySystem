@@ -25,8 +25,20 @@ message Balances {
 	repeated AccountBalance balances = 1;
 }
 
+message EnrollInBusinessRequest {
+	// When this user wants to enroll
+	// in the rewards program of this business,
+	// the Enroll endpoint is called.
+	Customer customer = 1;
+	int32 business_id = 2;
+}
+
+message EnrollInBusinessResponse {}
+
 service CustomerServer {
 	rpc Redeem (RedemptionRequest) returns (RedemptionResponse) {}
 	rpc GetBalances (BalanceRequest) returns (Balances) {}
+	rpc EnrollInBusiness (EnrollInBusinessRequest) returns
+	    (EnrollInBusinessResponse) {}
 }
 
