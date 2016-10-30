@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"%\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t2d\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12%\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\t.UserAuth\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nauth.proto\"%\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t\":\n\x0e\x44oAuthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x17\n\x04\x61uth\x18\x02 \x01(\x0b\x32\t.UserAuth2j\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12+\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\x0f.DoAuthResponse\"\x00\x62\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -177,10 +177,50 @@ _DOAUTHREQUEST = _descriptor.Descriptor(
   serialized_end=204,
 )
 
+
+_DOAUTHRESPONSE = _descriptor.Descriptor(
+  name='DoAuthResponse',
+  full_name='DoAuthResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='DoAuthResponse.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='auth', full_name='DoAuthResponse.auth', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=206,
+  serialized_end=264,
+)
+
+_DOAUTHRESPONSE.fields_by_name['auth'].message_type = _USERAUTH
 DESCRIPTOR.message_types_by_name['UserAuth'] = _USERAUTH
 DESCRIPTOR.message_types_by_name['StartAuthRequest'] = _STARTAUTHREQUEST
 DESCRIPTOR.message_types_by_name['StartAuthResponse'] = _STARTAUTHRESPONSE
 DESCRIPTOR.message_types_by_name['DoAuthRequest'] = _DOAUTHREQUEST
+DESCRIPTOR.message_types_by_name['DoAuthResponse'] = _DOAUTHRESPONSE
 
 UserAuth = _reflection.GeneratedProtocolMessageType('UserAuth', (_message.Message,), dict(
   DESCRIPTOR = _USERAUTH,
@@ -210,6 +250,13 @@ DoAuthRequest = _reflection.GeneratedProtocolMessageType('DoAuthRequest', (_mess
   ))
 _sym_db.RegisterMessage(DoAuthRequest)
 
+DoAuthResponse = _reflection.GeneratedProtocolMessageType('DoAuthResponse', (_message.Message,), dict(
+  DESCRIPTOR = _DOAUTHRESPONSE,
+  __module__ = 'auth_pb2'
+  # @@protoc_insertion_point(class_scope:DoAuthResponse)
+  ))
+_sym_db.RegisterMessage(DoAuthResponse)
+
 
 import grpc
 from grpc.beta import implementations as beta_implementations
@@ -234,7 +281,7 @@ class LoginStub(object):
     self.DoAuth = channel.unary_unary(
         '/Login/DoAuth',
         request_serializer=DoAuthRequest.SerializeToString,
-        response_deserializer=UserAuth.FromString,
+        response_deserializer=DoAuthResponse.FromString,
         )
 
 
@@ -273,7 +320,7 @@ def add_LoginServicer_to_server(servicer, server):
       'DoAuth': grpc.unary_unary_rpc_method_handler(
           servicer.DoAuth,
           request_deserializer=DoAuthRequest.FromString,
-          response_serializer=UserAuth.SerializeToString,
+          response_serializer=DoAuthResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
@@ -327,7 +374,7 @@ def beta_create_Login_server(servicer, pool=None, pool_size=None, default_timeou
     ('Login', 'StartAuth'): StartAuthRequest.FromString,
   }
   response_serializers = {
-    ('Login', 'DoAuth'): UserAuth.SerializeToString,
+    ('Login', 'DoAuth'): DoAuthResponse.SerializeToString,
     ('Login', 'StartAuth'): StartAuthResponse.SerializeToString,
   }
   method_implementations = {
@@ -344,7 +391,7 @@ def beta_create_Login_stub(channel, host=None, metadata_transformer=None, pool=N
     ('Login', 'StartAuth'): StartAuthRequest.SerializeToString,
   }
   response_deserializers = {
-    ('Login', 'DoAuth'): UserAuth.FromString,
+    ('Login', 'DoAuth'): DoAuthResponse.FromString,
     ('Login', 'StartAuth'): StartAuthResponse.FromString,
   }
   cardinalities = {

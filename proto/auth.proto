@@ -24,6 +24,11 @@ message DoAuthRequest {
 	string hash_token = 2;
 }
 
+message DoAuthResponse {
+	bool success = 1;
+	UserAuth auth = 2;
+}
+
 
 
 service Login {
@@ -39,6 +44,6 @@ service Login {
 	// password combined with the nonce. If successful,
 	// then the server will return back the token to use in
 	// future requests.
-	rpc DoAuth (DoAuthRequest) returns (UserAuth) {}
+	rpc DoAuth (DoAuthRequest) returns (DoAuthResponse) {}
 
 }

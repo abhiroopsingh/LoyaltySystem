@@ -1,5 +1,6 @@
 from genproto import auth_pb2 as apb
 from os import urandom
+import hashlib
 
 NONCE_LEN = 256/8
 RAND = random.SystemRandom()
@@ -15,15 +16,37 @@ class LoginSvc(apb.LoginServicer):
         self.db = db
         
     def StartAuth(self, request, context):
-        pass
+        user = self.db.find_username(request.username)
+        nonce, token = self.generate_token(user)
+        user.token = token
+        self.db.update_user(user)
 
+        return apb.StartAuthResponse(
+            username = user.username,
+            id = user.id,
+            nonce = nonce
+        )
+
+    
     def DoAuth(self, request, context):
-        pass
-
-    def check_validity(self, metadata):
-        """ Check to ensure this request metadata has
-        the correct token. """
-        pass
-
+        user = self.db.find_userid(request.id)
+        req_token = request.hash_token
+        good_token = user.token
+        if good_token == req_token:
+            # auth passes
+            return apb.DoAuthResponse(
+                auth = apb.UserAuth(
+                    id = user.id,
+                    token = good_token
+                ),
+                success = True
+            )
+        
+        return apb.DoAuthResponse(success = False)
+                
     def generate_token(self, user):
-        pass
+        nonce = get_nonce()
+        salted = (nonce + user.passhash)
+        hashedtoken = hashlib.sha256(salted)
+        return nonce, hashedtoken.hexdigest()
+        

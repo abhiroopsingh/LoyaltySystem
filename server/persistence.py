@@ -14,6 +14,9 @@ class MemoryPersist:
     def find_username(self, username):
         return self.usernames.get(username, None)
 
+    def update_user(self, user):
+        self.add_user(user)
+
     def add_user(self, userinfo):
         self.usernames[userinfo.username] = userinfo
         self.userids[userinfo.userid] = userinfo
