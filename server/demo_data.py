@@ -6,3 +6,8 @@ def add_demo_data(db):
     # customer.
     db.update_user(User(0, "potter", "Harry Potter", "*****"))
     db.update_account(AccountBalance(999, 0,0,0))
+
+    # shopkeep.
+    db.update_user(User(0, "shopkeep", "Shopkeeper", "*****", "*****", 0))
+
+

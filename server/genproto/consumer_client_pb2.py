@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='consumer_client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"-\n\x0e\x42\x61lanceRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance\"K\n\x17\x45nrollInBusinessRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x05\"+\n\x18\x45nrollInBusinessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x88\x01\n\x0e\x43ustomerServer\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x12I\n\x10\x45nrollInBusiness\x12\x18.EnrollInBusinessRequest\x1a\x19.EnrollInBusinessResponse\"\x00\x42\x1c\n\x1a\x63om.loyaltysystem.customerb\x06proto3')
+  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"%\n\x0e\x42\x61lanceRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance\"K\n\x17\x45nrollInBusinessRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x05\"+\n\x18\x45nrollInBusinessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x88\x01\n\x0e\x43ustomerServer\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x12I\n\x10\x45nrollInBusiness\x12\x18.EnrollInBusinessRequest\x1a\x19.EnrollInBusinessResponse\"\x00\x42\x1c\n\x1a\x63om.loyaltysystem.customerb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -36,9 +36,9 @@ _BALANCEREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='customer', full_name='BalanceRequest.customer', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='customer_id', full_name='BalanceRequest.customer_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -55,7 +55,7 @@ _BALANCEREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=37,
-  serialized_end=82,
+  serialized_end=74,
 )
 
 
@@ -85,8 +85,8 @@ _BALANCES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=84,
-  serialized_end=129,
+  serialized_start=76,
+  serialized_end=121,
 )
 
 
@@ -123,8 +123,8 @@ _ENROLLINBUSINESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=131,
-  serialized_end=206,
+  serialized_start=123,
+  serialized_end=198,
 )
 
 
@@ -154,11 +154,10 @@ _ENROLLINBUSINESSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=208,
-  serialized_end=251,
+  serialized_start=200,
+  serialized_end=243,
 )
 
-_BALANCEREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 _BALANCES.fields_by_name['balances'].message_type = base__pb2._ACCOUNTBALANCE
 _ENROLLINBUSINESSREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 DESCRIPTOR.message_types_by_name['BalanceRequest'] = _BALANCEREQUEST

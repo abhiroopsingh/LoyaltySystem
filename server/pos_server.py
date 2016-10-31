@@ -1,6 +1,7 @@
 from genproto import pos_client_pb2 as ppb
 from genproto import base_pb2 as bpb
 import data
+import util
 
 
 class SaleServer(ppb.PointOfSaleServicer):
@@ -13,7 +14,7 @@ class SaleServer(ppb.PointOfSaleServicer):
         return None
 
     def Accrue(self, request, context):
-        cust_id = request.customer.id
+        cust_id = request.customer_id
         bsn_id = request.business_id
         
         failure = ppb.AccrualResponse(success=False)
@@ -34,4 +35,4 @@ class SaleServer(ppb.PointOfSaleServicer):
         act.points += request.point_amount
         self.db.update_account(act)
         
-        return ppb.AccrualRepsonse(success=True)
+        return ppb.AccrualResponse(success=True)

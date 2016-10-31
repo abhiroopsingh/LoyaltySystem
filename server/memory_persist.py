@@ -43,7 +43,10 @@ class IndexedItems(object):
 
     def get(self, query):
         res = list(self.all(query))
-        assert len(res) == 1
+
+        assert len(res) <= 1
+        if not res:
+            return None
         return res[0]
         
         

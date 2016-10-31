@@ -13,18 +13,18 @@ class CustomerServer(cpb.CustomerServerServicer):
         self.log = logger
 
     def GetBalances(self, request, context):
-        cust = request.customer
-        usr = self.db.users().where(id=cust.id).get()
+        cust_id = request.customer_id
+        usr = self.db.users().where(id=cust_id).get()
 
         rsp = cpb.Balances()
         
-        for balance in self.db.accounts().where(customerid=usr.id):
+        for balance in self.db.accounts().where(customerid=usr.id).all():
             bsn = self.db.businesses().where(id=balance.businessid).get()
             
-            rsp.balances.append(
-                business = util.business_proto(bsn),
-                point_balance = balance.points
-            )
+            msg = rsp.balances.add()
+            msg.business.CopyFrom(util.business_proto(bsn))
+            msg.point_balance = balance.points
+            
         return rsp
 
     def EnrollInBusiness(self, request, context):
