@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_package = "com.loyaltysystem.auth";
+
+// UserAuth represents a user that has been
+// authenticated and can be used in requests.
+message UserAuth {
+	int64 id = 1;
+	string token = 2;
+
+	// If this user is authorized to represent a business
+	// then that business's ID will appear here.
+	int64 authorized_business = 3;
+}
+
+
+
+message StartAuthRequest {
+	string username = 1;
+}
+
+message StartAuthResponse {
+	string username = 1;
+	int64 id = 2;
+	string nonce = 3;
+}
+
+message DoAuthRequest {
+	int64 id = 1;
+	string hash_token = 2;
+}
+
+message DoAuthResponse {
+	bool success = 1;
+	UserAuth auth = 2;
+}
+
+
+
+service Login {
+	// StartAuth is the beginning of the
+	// authentication flow. The client sends a
+	// username they would like to authenticate
+	// as, and the server returns a nonce to
+	// hash the password with.
+	rpc StartAuth (StartAuthRequest) returns (StartAuthResponse) {}
+
+	// DoAuth is the second portion of the authentication.
+	// The client sends the user ID and a hash of their
+	// password combined with the nonce. If successful,
+	// then the server will return back the token to use in
+	// future requests.
+	rpc DoAuth (DoAuthRequest) returns (DoAuthResponse) {}
+
+}
