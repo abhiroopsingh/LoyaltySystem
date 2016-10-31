@@ -10,3 +10,6 @@ def business_proto(business):
         id = business.id
 
     )
+
+def exists(basequery, idval):
+    return basequery.where(id=idval).len() > 0

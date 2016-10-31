@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\"6\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\"$\n\x08\x42usiness\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\"D\n\x0e\x41\x63\x63ountBalance\x12\x1b\n\x08\x62usiness\x18\x01 \x01(\x0b\x32\t.Business\x12\x15\n\rpoint_balance\x18\x02 \x01(\x05\"J\n\x15RedemptionOpportunity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x17\n\x0frequired_points\x18\x02 \x01(\x05\x12\n\n\x02id\x18\x03 \x01(\x03\x62\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\"6\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\"$\n\x08\x42usiness\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\"D\n\x0e\x41\x63\x63ountBalance\x12\x1b\n\x08\x62usiness\x18\x01 \x01(\x0b\x32\t.Business\x12\x15\n\rpoint_balance\x18\x02 \x01(\x05\"J\n\x15RedemptionOpportunity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x17\n\x0frequired_points\x18\x02 \x01(\x05\x12\n\n\x02id\x18\x03 \x01(\x03\x42\x18\n\x16\x63om.loyaltysystem.baseb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -226,6 +226,8 @@ RedemptionOpportunity = _reflection.GeneratedProtocolMessageType('RedemptionOppo
 _sym_db.RegisterMessage(RedemptionOpportunity)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\026com.loyaltysystem.base'))
 import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces

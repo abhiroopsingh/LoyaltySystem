@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"%\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t\":\n\x0e\x44oAuthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x17\n\x04\x61uth\x18\x02 \x01(\x0b\x32\t.UserAuth2j\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12+\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\x0f.DoAuthResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nauth.proto\"B\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\x12\x1b\n\x13\x61uthorized_business\x18\x03 \x01(\x03\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t\":\n\x0e\x44oAuthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x17\n\x04\x61uth\x18\x02 \x01(\x0b\x32\t.UserAuth2j\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12+\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\x0f.DoAuthResponse\"\x00\x42\x18\n\x16\x63om.loyaltysystem.authb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -47,6 +47,13 @@ _USERAUTH = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='authorized_business', full_name='UserAuth.authorized_business', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -60,7 +67,7 @@ _USERAUTH = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=14,
-  serialized_end=51,
+  serialized_end=80,
 )
 
 
@@ -90,8 +97,8 @@ _STARTAUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=53,
-  serialized_end=89,
+  serialized_start=82,
+  serialized_end=118,
 )
 
 
@@ -135,8 +142,8 @@ _STARTAUTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=91,
-  serialized_end=155,
+  serialized_start=120,
+  serialized_end=184,
 )
 
 
@@ -173,8 +180,8 @@ _DOAUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=157,
-  serialized_end=204,
+  serialized_start=186,
+  serialized_end=233,
 )
 
 
@@ -211,8 +218,8 @@ _DOAUTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=206,
-  serialized_end=264,
+  serialized_start=235,
+  serialized_end=293,
 )
 
 _DOAUTHRESPONSE.fields_by_name['auth'].message_type = _USERAUTH
@@ -258,6 +265,8 @@ DoAuthResponse = _reflection.GeneratedProtocolMessageType('DoAuthResponse', (_me
 _sym_db.RegisterMessage(DoAuthResponse)
 
 
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\026com.loyaltysystem.auth'))
 import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces

@@ -11,6 +11,7 @@ class User(object):
     name = attr.ib()
     passhash = attr.ib()
     token = attr.ib(default="")
+    authorized_business = attr.ib(default=None)
     
 @attr.s
 class AccountBalance(object):

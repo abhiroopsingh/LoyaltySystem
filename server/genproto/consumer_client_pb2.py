@@ -20,95 +20,12 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='consumer_client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"H\n\x11RedemptionRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x16\n\x0eopportunity_id\x18\x02 \x01(\x05\"X\n\x12RedemptionResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0f\n\x07success\x18\x02 \x01(\x08\x12 \n\x07\x62\x61lance\x18\x03 \x01(\x0b\x32\x0f.AccountBalance\"-\n\x0e\x42\x61lanceRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance2r\n\x0e\x43ustomerServer\x12\x33\n\x06Redeem\x12\x12.RedemptionRequest\x1a\x13.RedemptionResponse\"\x00\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"-\n\x0e\x42\x61lanceRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance\"K\n\x17\x45nrollInBusinessRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x05\"+\n\x18\x45nrollInBusinessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x88\x01\n\x0e\x43ustomerServer\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x12I\n\x10\x45nrollInBusiness\x12\x18.EnrollInBusinessRequest\x1a\x19.EnrollInBusinessResponse\"\x00\x42\x1c\n\x1a\x63om.loyaltysystem.customerb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
-
-
-_REDEMPTIONREQUEST = _descriptor.Descriptor(
-  name='RedemptionRequest',
-  full_name='RedemptionRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='customer', full_name='RedemptionRequest.customer', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='opportunity_id', full_name='RedemptionRequest.opportunity_id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=37,
-  serialized_end=109,
-)
-
-
-_REDEMPTIONRESPONSE = _descriptor.Descriptor(
-  name='RedemptionResponse',
-  full_name='RedemptionResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='message', full_name='RedemptionResponse.message', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='success', full_name='RedemptionResponse.success', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='balance', full_name='RedemptionResponse.balance', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=111,
-  serialized_end=199,
-)
 
 
 _BALANCEREQUEST = _descriptor.Descriptor(
@@ -137,8 +54,8 @@ _BALANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=201,
-  serialized_end=246,
+  serialized_start=37,
+  serialized_end=82,
 )
 
 
@@ -168,32 +85,86 @@ _BALANCES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=248,
-  serialized_end=293,
+  serialized_start=84,
+  serialized_end=129,
 )
 
-_REDEMPTIONREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
-_REDEMPTIONRESPONSE.fields_by_name['balance'].message_type = base__pb2._ACCOUNTBALANCE
+
+_ENROLLINBUSINESSREQUEST = _descriptor.Descriptor(
+  name='EnrollInBusinessRequest',
+  full_name='EnrollInBusinessRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='customer', full_name='EnrollInBusinessRequest.customer', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='business_id', full_name='EnrollInBusinessRequest.business_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=131,
+  serialized_end=206,
+)
+
+
+_ENROLLINBUSINESSRESPONSE = _descriptor.Descriptor(
+  name='EnrollInBusinessResponse',
+  full_name='EnrollInBusinessResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='EnrollInBusinessResponse.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=208,
+  serialized_end=251,
+)
+
 _BALANCEREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 _BALANCES.fields_by_name['balances'].message_type = base__pb2._ACCOUNTBALANCE
-DESCRIPTOR.message_types_by_name['RedemptionRequest'] = _REDEMPTIONREQUEST
-DESCRIPTOR.message_types_by_name['RedemptionResponse'] = _REDEMPTIONRESPONSE
+_ENROLLINBUSINESSREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 DESCRIPTOR.message_types_by_name['BalanceRequest'] = _BALANCEREQUEST
 DESCRIPTOR.message_types_by_name['Balances'] = _BALANCES
-
-RedemptionRequest = _reflection.GeneratedProtocolMessageType('RedemptionRequest', (_message.Message,), dict(
-  DESCRIPTOR = _REDEMPTIONREQUEST,
-  __module__ = 'consumer_client_pb2'
-  # @@protoc_insertion_point(class_scope:RedemptionRequest)
-  ))
-_sym_db.RegisterMessage(RedemptionRequest)
-
-RedemptionResponse = _reflection.GeneratedProtocolMessageType('RedemptionResponse', (_message.Message,), dict(
-  DESCRIPTOR = _REDEMPTIONRESPONSE,
-  __module__ = 'consumer_client_pb2'
-  # @@protoc_insertion_point(class_scope:RedemptionResponse)
-  ))
-_sym_db.RegisterMessage(RedemptionResponse)
+DESCRIPTOR.message_types_by_name['EnrollInBusinessRequest'] = _ENROLLINBUSINESSREQUEST
+DESCRIPTOR.message_types_by_name['EnrollInBusinessResponse'] = _ENROLLINBUSINESSRESPONSE
 
 BalanceRequest = _reflection.GeneratedProtocolMessageType('BalanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _BALANCEREQUEST,
@@ -209,7 +180,23 @@ Balances = _reflection.GeneratedProtocolMessageType('Balances', (_message.Messag
   ))
 _sym_db.RegisterMessage(Balances)
 
+EnrollInBusinessRequest = _reflection.GeneratedProtocolMessageType('EnrollInBusinessRequest', (_message.Message,), dict(
+  DESCRIPTOR = _ENROLLINBUSINESSREQUEST,
+  __module__ = 'consumer_client_pb2'
+  # @@protoc_insertion_point(class_scope:EnrollInBusinessRequest)
+  ))
+_sym_db.RegisterMessage(EnrollInBusinessRequest)
 
+EnrollInBusinessResponse = _reflection.GeneratedProtocolMessageType('EnrollInBusinessResponse', (_message.Message,), dict(
+  DESCRIPTOR = _ENROLLINBUSINESSRESPONSE,
+  __module__ = 'consumer_client_pb2'
+  # @@protoc_insertion_point(class_scope:EnrollInBusinessResponse)
+  ))
+_sym_db.RegisterMessage(EnrollInBusinessResponse)
+
+
+DESCRIPTOR.has_options = True
+DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032com.loyaltysystem.customer'))
 import grpc
 from grpc.beta import implementations as beta_implementations
 from grpc.beta import interfaces as beta_interfaces
@@ -225,26 +212,26 @@ class CustomerServerStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.Redeem = channel.unary_unary(
-        '/CustomerServer/Redeem',
-        request_serializer=RedemptionRequest.SerializeToString,
-        response_deserializer=RedemptionResponse.FromString,
-        )
     self.GetBalances = channel.unary_unary(
         '/CustomerServer/GetBalances',
         request_serializer=BalanceRequest.SerializeToString,
         response_deserializer=Balances.FromString,
         )
+    self.EnrollInBusiness = channel.unary_unary(
+        '/CustomerServer/EnrollInBusiness',
+        request_serializer=EnrollInBusinessRequest.SerializeToString,
+        response_deserializer=EnrollInBusinessResponse.FromString,
+        )
 
 
 class CustomerServerServicer(object):
 
-  def Redeem(self, request, context):
+  def GetBalances(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def GetBalances(self, request, context):
+  def EnrollInBusiness(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -252,15 +239,15 @@ class CustomerServerServicer(object):
 
 def add_CustomerServerServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'Redeem': grpc.unary_unary_rpc_method_handler(
-          servicer.Redeem,
-          request_deserializer=RedemptionRequest.FromString,
-          response_serializer=RedemptionResponse.SerializeToString,
-      ),
       'GetBalances': grpc.unary_unary_rpc_method_handler(
           servicer.GetBalances,
           request_deserializer=BalanceRequest.FromString,
           response_serializer=Balances.SerializeToString,
+      ),
+      'EnrollInBusiness': grpc.unary_unary_rpc_method_handler(
+          servicer.EnrollInBusiness,
+          request_deserializer=EnrollInBusinessRequest.FromString,
+          response_serializer=EnrollInBusinessResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
@@ -269,33 +256,33 @@ def add_CustomerServerServicer_to_server(servicer, server):
 
 
 class BetaCustomerServerServicer(object):
-  def Redeem(self, request, context):
-    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def GetBalances(self, request, context):
+    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def EnrollInBusiness(self, request, context):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
 class BetaCustomerServerStub(object):
-  def Redeem(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-    raise NotImplementedError()
-  Redeem.future = None
   def GetBalances(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     raise NotImplementedError()
   GetBalances.future = None
+  def EnrollInBusiness(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    raise NotImplementedError()
+  EnrollInBusiness.future = None
 
 
 def beta_create_CustomerServer_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
   request_deserializers = {
+    ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessRequest.FromString,
     ('CustomerServer', 'GetBalances'): BalanceRequest.FromString,
-    ('CustomerServer', 'Redeem'): RedemptionRequest.FromString,
   }
   response_serializers = {
+    ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessResponse.SerializeToString,
     ('CustomerServer', 'GetBalances'): Balances.SerializeToString,
-    ('CustomerServer', 'Redeem'): RedemptionResponse.SerializeToString,
   }
   method_implementations = {
+    ('CustomerServer', 'EnrollInBusiness'): face_utilities.unary_unary_inline(servicer.EnrollInBusiness),
     ('CustomerServer', 'GetBalances'): face_utilities.unary_unary_inline(servicer.GetBalances),
-    ('CustomerServer', 'Redeem'): face_utilities.unary_unary_inline(servicer.Redeem),
   }
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
   return beta_implementations.server(method_implementations, options=server_options)
@@ -303,16 +290,16 @@ def beta_create_CustomerServer_server(servicer, pool=None, pool_size=None, defau
 
 def beta_create_CustomerServer_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
   request_serializers = {
+    ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessRequest.SerializeToString,
     ('CustomerServer', 'GetBalances'): BalanceRequest.SerializeToString,
-    ('CustomerServer', 'Redeem'): RedemptionRequest.SerializeToString,
   }
   response_deserializers = {
+    ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessResponse.FromString,
     ('CustomerServer', 'GetBalances'): Balances.FromString,
-    ('CustomerServer', 'Redeem'): RedemptionResponse.FromString,
   }
   cardinalities = {
+    'EnrollInBusiness': cardinality.Cardinality.UNARY_UNARY,
     'GetBalances': cardinality.Cardinality.UNARY_UNARY,
-    'Redeem': cardinality.Cardinality.UNARY_UNARY,
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
   return beta_implementations.dynamic_stub(channel, 'CustomerServer', cardinalities, options=stub_options)

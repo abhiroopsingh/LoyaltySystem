@@ -12,9 +12,6 @@ class CustomerServer(cpb.CustomerServerServicer):
         self.db = db
         self.log = logger
 
-    def Redeem(self, request, context):
-        return None
-
     def GetBalances(self, request, context):
         cust = request.customer
         usr = self.db.users().where(id=cust.id).get()
