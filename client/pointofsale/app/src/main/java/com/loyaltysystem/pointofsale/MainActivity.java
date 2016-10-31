@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final PointOfSale pos = new PointOfSale("testbusiness", "password");
+        final PointOfSale pos = new PointOfSale("shopkeep", "password");
 
         Button accrue = (Button)findViewById(R.id.accrue_button);
         final EditText amt = (EditText)findViewById(R.id.pointsbox);

@@ -16,7 +16,7 @@ import io.grpc.ManagedChannelBuilder;
 public class LoyaltySys {
 
     static final String HOST = "10.0.2.2";
-    static final int PORT = 5051;
+    static final int PORT = 50051;
 
 
     public static PointOfSaleGrpc.PointOfSaleBlockingStub Connect(){
