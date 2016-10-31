@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_package = "com.loyaltysystem.pointofsale";
+
+message AccrualRequest {
+	int64 customer_id  = 1;
+	int64 business_id  = 2;
+	int32 point_amount = 3;
+}
+
+message AccrualResponse {
+	bool success = 1;
+}
+
+message RedemptionRequest {
+	Customer customer = 1;
+	
+	// The redemption opportunity that
+	// this customer would like to use.
+	int32 opportunity_id = 2;
+}
+
+message RedemptionResponse {
+	bool success = 1;
+	string message = 2;
+}
+
+
+service PointOfSale {
+	rpc Redeem (RedemptionRequest) returns (RedemptionResponse) {}
+	rpc Accrue (AccrualRequest) returns (AccrualResponse) {}
+}
