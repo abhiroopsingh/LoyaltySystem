@@ -9,6 +9,17 @@ import com.loyaltysystem.base.Base;
 
 public class PointOfSale {
 
+    private static PointOfSale pos;
+
+    public static PointOfSale get() {
+        return pos;
+    }
+
+    public static boolean login(String username, String password){
+        pos = new PointOfSale(username, password);
+        return true; // TODO(gcolella): check the authentication result here.
+    }
+
     PointOfSaleGrpc.PointOfSaleBlockingStub client;
     Auth.UserAuth savedAuth;
 

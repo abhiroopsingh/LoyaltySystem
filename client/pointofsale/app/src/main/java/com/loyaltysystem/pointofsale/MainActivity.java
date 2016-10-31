@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final PointOfSale pos = new PointOfSale("shopkeep", "password");
 
         Button accrue = (Button)findViewById(R.id.accrue_button);
         final EditText amt = (EditText)findViewById(R.id.pointsbox);
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pos.accrue(Integer.parseInt(cust.getText().toString()), Integer.parseInt(amt.getText().toString()));
+                PointOfSale.get().accrue(Integer.parseInt(cust.getText().toString()), Integer.parseInt(amt.getText().toString()));
             }
         });
     }

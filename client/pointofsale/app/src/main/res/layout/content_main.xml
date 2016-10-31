@@ -26,13 +26,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Account To Credit"
         android:ems="10"
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="81dp"
-        android:id="@+id/customerbox" />
+        android:id="@+id/customerbox"
+        android:hint="Account To Credit" />
 
     <Button
         android:text="Accrue"
@@ -53,6 +53,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="33dp"
         android:id="@+id/pointsbox"
-        android:text="Points To Give" />
+        android:hint="Points To Give" />
 
 </RelativeLayout>

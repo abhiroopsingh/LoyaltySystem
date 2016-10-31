@@ -30,6 +30,7 @@ class FakeLoginSvc(apb.LoginServicer):
         if not user:
             return apb.DoAuthResponse(success=False)
 
+        self.log.info("Authenticating user {} ({})", user.username, user.id)
         return apb.DoAuthResponse(
             auth = apb.UserAuth(
                 id = user.id,
