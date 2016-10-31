@@ -25,7 +25,7 @@ class TestMemoryPersist(unittest.TestCase):
             data.AccountBalance(*ab) for ab in [
                 [1, 1, 4, 10],
                 [2, 1, 5, 5],
-                [3, 2, 2, 0],
+                [3, 2, 4, 0],
         ]]
 
     def populate(self):
@@ -61,9 +61,10 @@ class TestMemoryPersist(unittest.TestCase):
         self.assertEquals(mfly, self.fake_usrs[3])
 
         self.assertEquals(self.db.accounts().where(businessid=1).len(),2)
-
-                          
-            
+        self.assertEquals(self.db.accounts().where(customerid=4).len(),2)
+        self.assertEquals(self.db.accounts()
+                          .where(businessid=1)
+                          .where(customerid=4).len(), 1)
 
         
             
