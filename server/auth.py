@@ -1,4 +1,5 @@
 from genproto import auth_pb2 as apb
+from genproto import base_pb2 as bpb
 from os import urandom
 import hashlib
 
@@ -36,6 +37,11 @@ class FakeLoginSvc(apb.LoginServicer):
                 id = user.id,
                 token = "FAKE",
                 authorized_business = user.authorized_business
+            ),
+            customer = bpb.Customer(
+                id = user.id,
+                name = user.name,
+                username = user.username
             ),
             success = True
         )
@@ -75,6 +81,11 @@ class LoginSvc(apb.LoginServicer):
                     id = user.id,
                     token = good_token
                 ),
+            customer = bpb.Customer(
+                id = user.id,
+                name = user.name,
+                username = user.username
+            ),
                 success = True
             )
         

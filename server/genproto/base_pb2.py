@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='base.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nbase.proto\"6\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\"$\n\x08\x42usiness\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\"D\n\x0e\x41\x63\x63ountBalance\x12\x1b\n\x08\x62usiness\x18\x01 \x01(\x0b\x32\t.Business\x12\x15\n\rpoint_balance\x18\x02 \x01(\x05\"J\n\x15RedemptionOpportunity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x17\n\x0frequired_points\x18\x02 \x01(\x05\x12\n\n\x02id\x18\x03 \x01(\x03\x42\x18\n\x16\x63om.loyaltysystem.baseb\x06proto3')
+  serialized_pb=_b('\n\nbase.proto\"6\n\x08\x43ustomer\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\":\n\x08\x42usiness\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\x14\n\x0cthumbnailurl\x18\x03 \x01(\t\"D\n\x0e\x41\x63\x63ountBalance\x12\x1b\n\x08\x62usiness\x18\x01 \x01(\x0b\x32\t.Business\x12\x15\n\rpoint_balance\x18\x02 \x01(\x05\"J\n\x15RedemptionOpportunity\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x17\n\x0frequired_points\x18\x02 \x01(\x05\x12\n\n\x02id\x18\x03 \x01(\x03\x42\x18\n\x16\x63om.loyaltysystem.baseb\x06proto3')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -92,6 +92,13 @@ _BUSINESS = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='thumbnailurl', full_name='Business.thumbnailurl', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -105,7 +112,7 @@ _BUSINESS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=70,
-  serialized_end=106,
+  serialized_end=128,
 )
 
 
@@ -142,8 +149,8 @@ _ACCOUNTBALANCE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=108,
-  serialized_end=176,
+  serialized_start=130,
+  serialized_end=198,
 )
 
 
@@ -187,8 +194,8 @@ _REDEMPTIONOPPORTUNITY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=178,
-  serialized_end=252,
+  serialized_start=200,
+  serialized_end=274,
 )
 
 _ACCOUNTBALANCE.fields_by_name['business'].message_type = _BUSINESS

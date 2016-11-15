@@ -13,14 +13,16 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 
+import base_pb2 as base__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"B\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\x12\x1b\n\x13\x61uthorized_business\x18\x03 \x01(\x03\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t\":\n\x0e\x44oAuthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x17\n\x04\x61uth\x18\x02 \x01(\x0b\x32\t.UserAuth2j\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12+\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\x0f.DoAuthResponse\"\x00\x42\x18\n\x16\x63om.loyaltysystem.authb\x06proto3')
-)
+  serialized_pb=_b('\n\nauth.proto\x1a\nbase.proto\"B\n\x08UserAuth\x12\n\n\x02id\x18\x01 \x01(\x03\x12\r\n\x05token\x18\x02 \x01(\t\x12\x1b\n\x13\x61uthorized_business\x18\x03 \x01(\x03\"$\n\x10StartAuthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\"@\n\x11StartAuthResponse\x12\x10\n\x08username\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\r\n\x05nonce\x18\x03 \x01(\t\"/\n\rDoAuthRequest\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x12\n\nhash_token\x18\x02 \x01(\t\"W\n\x0e\x44oAuthResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x17\n\x04\x61uth\x18\x02 \x01(\x0b\x32\t.UserAuth\x12\x1b\n\x08\x63ustomer\x18\x03 \x01(\x0b\x32\t.Customer2j\n\x05Login\x12\x34\n\tStartAuth\x12\x11.StartAuthRequest\x1a\x12.StartAuthResponse\"\x00\x12+\n\x06\x44oAuth\x12\x0e.DoAuthRequest\x1a\x0f.DoAuthResponse\"\x00\x42\x18\n\x16\x63om.loyaltysystem.authb\x06proto3')
+  ,
+  dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
@@ -66,8 +68,8 @@ _USERAUTH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=14,
-  serialized_end=80,
+  serialized_start=26,
+  serialized_end=92,
 )
 
 
@@ -97,8 +99,8 @@ _STARTAUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=82,
-  serialized_end=118,
+  serialized_start=94,
+  serialized_end=130,
 )
 
 
@@ -142,8 +144,8 @@ _STARTAUTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=120,
-  serialized_end=184,
+  serialized_start=132,
+  serialized_end=196,
 )
 
 
@@ -180,8 +182,8 @@ _DOAUTHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=186,
-  serialized_end=233,
+  serialized_start=198,
+  serialized_end=245,
 )
 
 
@@ -206,6 +208,13 @@ _DOAUTHRESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='customer', full_name='DoAuthResponse.customer', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -218,11 +227,12 @@ _DOAUTHRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=235,
-  serialized_end=293,
+  serialized_start=247,
+  serialized_end=334,
 )
 
 _DOAUTHRESPONSE.fields_by_name['auth'].message_type = _USERAUTH
+_DOAUTHRESPONSE.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 DESCRIPTOR.message_types_by_name['UserAuth'] = _USERAUTH
 DESCRIPTOR.message_types_by_name['StartAuthRequest'] = _STARTAUTHREQUEST
 DESCRIPTOR.message_types_by_name['StartAuthResponse'] = _STARTAUTHRESPONSE

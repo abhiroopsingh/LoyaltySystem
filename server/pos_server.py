@@ -5,9 +5,10 @@ import util
 
 
 class SaleServer(ppb.PointOfSaleServicer):
-    def __init__(self, db, logger):
+    def __init__(self, db, logger, notifier):
         self.db = db
         self.log = logger
+        self.notifier = notifier
 
 
     def Redeem(self, request, context):
@@ -24,7 +25,8 @@ class SaleServer(ppb.PointOfSaleServicer):
 
         if not util.exists(self.db.businesses(), bsn_id):
             return failure
-        
+
+        bsn_name = self.db.businesses().where(id=bsn_id).get().name
         
         act = self.db.accounts().where(customerid=cust_id).where(businessid=bsn_id).get()
 
@@ -34,5 +36,16 @@ class SaleServer(ppb.PointOfSaleServicer):
         self.log.info("Accruing {} points to customer {}", request.point_amount, cust_id)
         act.points += request.point_amount
         self.db.update_account(act)
-        
+        self.notifier.notify(cust_id, (bsn_id, bsn_name, request.point_amount))
         return ppb.AccrualResponse(success=True)
+
+    def GetBusinessInfo(self, req, context):
+        if not util.exists(self.db.businesses(), req.id):
+            raise Exception("No such business {}".format(req.id))
+
+        bs = self.db.businesses().where(id=req.id).get()
+        return ppb.BusinessInfo(
+            id = bs.id,
+            name = bs.name)
+
+        

@@ -7,8 +7,8 @@ from data import *
 def business_proto(business):
     return bpb.Business(
         name  = business.name,
-        id = business.id
-
+        id = business.id,
+        thumbnailurl = business.thumbnail,
     )
 
 def exists(basequery, idval):

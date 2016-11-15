@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+
+import "base.proto"; 
 option java_package = "com.loyaltysystem.auth";
 
 // UserAuth represents a user that has been
@@ -33,6 +35,7 @@ message DoAuthRequest {
 message DoAuthResponse {
 	bool success = 1;
 	UserAuth auth = 2;
+	Customer customer = 3;
 }
 
 

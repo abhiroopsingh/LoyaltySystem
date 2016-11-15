@@ -3,14 +3,16 @@ from genproto import base_pb2 as bpb
 import util
 import data
 import uuid
+import time
 
 # Implementation of the CustomerServer service, that
 # handles customer-facing requests.
 
 class CustomerServer(cpb.CustomerServerServicer):
-    def __init__(self, db, logger):
+    def __init__(self, db, logger, notifier):
         self.db = db
         self.log = logger
+        self.notifier = notifier
 
     def GetBalances(self, request, context):
         cust_id = request.customer_id
@@ -46,3 +48,25 @@ class CustomerServer(cpb.CustomerServerServicer):
 
         self.log.warn("Couldn't find the user ({}) or business ({}) to enroll.", request.customer,id, request.business.id)
         return cpb.EnrollInBusinessResponse(success=False)
+
+    def AwaitTransaction(self, request, context):
+        x = []
+        def update_x(itm):
+            print "Notifying awaiter on {}".format(request.user_id)
+            x.append(itm)
+        self.notifier.add_waiter(request.user_id, update_x)
+        nones = 0
+        while not x:
+            time.sleep(.1)
+            nones += 1
+            if nones > 50:
+                yield cpb.AwaitRsp(action=False)
+                nones = 0
+        businessid, name, change = x[0]
+        print "Returning await answer."
+        yield cpb.AwaitRsp(
+            action=True,
+            point_change = change,
+            business_id = businessid,
+            business_name = name)
+        

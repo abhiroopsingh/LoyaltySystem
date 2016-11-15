@@ -27,8 +27,16 @@ message RedemptionResponse {
 	string message = 2;
 }
 
+message InfoReq {
+	int64 id = 1;
+}
+message BusinessInfo {
+	string name = 1;
+	int64 id = 2;
+}
 
 service PointOfSale {
 	rpc Redeem (RedemptionRequest) returns (RedemptionResponse) {}
 	rpc Accrue (AccrualRequest) returns (AccrualResponse) {}
+	rpc GetBusinessInfo (InfoReq) returns (BusinessInfo) {}
 }

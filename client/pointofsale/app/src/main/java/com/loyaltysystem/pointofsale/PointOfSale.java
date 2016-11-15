@@ -22,10 +22,13 @@ public class PointOfSale {
 
     PointOfSaleGrpc.PointOfSaleBlockingStub client;
     Auth.UserAuth savedAuth;
+    Base.Customer profile;
 
     public PointOfSale(String username, String password){
         client = LoyaltySys.Connect();
-        savedAuth = LoyaltySys.authenticate(username, password);
+        Auth.DoAuthResponse dar = LoyaltySys.authenticate(username, password);
+        savedAuth = dar.getAuth();
+        profile = dar.getCustomer();
     }
 
     public boolean accrue(int userId, int points) {
@@ -34,6 +37,10 @@ public class PointOfSale {
                 .setCustomerId(userId)
                 .setPointAmount(points).build()
         ).getSuccess();
+    }
+
+    public PosClient.BusinessInfo businessInfo(long business) {
+        return client.getBusinessInfo(PosClient.InfoReq.newBuilder().setId(business).build());
     }
 
 }

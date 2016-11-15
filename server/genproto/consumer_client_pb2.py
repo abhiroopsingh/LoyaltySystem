@@ -20,12 +20,50 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='consumer_client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"%\n\x0e\x42\x61lanceRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance\"K\n\x17\x45nrollInBusinessRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x05\"+\n\x18\x45nrollInBusinessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\x88\x01\n\x0e\x43ustomerServer\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x12I\n\x10\x45nrollInBusiness\x12\x18.EnrollInBusinessRequest\x1a\x19.EnrollInBusinessResponse\"\x00\x42\x1c\n\x1a\x63om.loyaltysystem.customerb\x06proto3')
+  serialized_pb=_b('\n\x15\x63onsumer_client.proto\x1a\nbase.proto\"@\n\x12\x43ustomerIdentifier\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\r\n\x05nonce\x18\x02 \x01(\t\"%\n\x0e\x42\x61lanceRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\"-\n\x08\x42\x61lances\x12!\n\x08\x62\x61lances\x18\x01 \x03(\x0b\x32\x0f.AccountBalance\"K\n\x17\x45nrollInBusinessRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x05\"+\n\x18\x45nrollInBusinessResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"\x1b\n\x08\x41waitReq\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\"\\\n\x08\x41waitRsp\x12\x0e\n\x06\x61\x63tion\x18\x04 \x01(\x08\x12\x14\n\x0cpoint_change\x18\x01 \x01(\x05\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x03\x12\x15\n\rbusiness_name\x18\x03 \x01(\t2\xb6\x01\n\x0e\x43ustomerServer\x12+\n\x0bGetBalances\x12\x0f.BalanceRequest\x1a\t.Balances\"\x00\x12I\n\x10\x45nrollInBusiness\x12\x18.EnrollInBusinessRequest\x1a\x19.EnrollInBusinessResponse\"\x00\x12,\n\x10\x41waitTransaction\x12\t.AwaitReq\x1a\t.AwaitRsp\"\x00\x30\x01\x42\x1c\n\x1a\x63om.loyaltysystem.customerb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
+
+
+_CUSTOMERIDENTIFIER = _descriptor.Descriptor(
+  name='CustomerIdentifier',
+  full_name='CustomerIdentifier',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='customer', full_name='CustomerIdentifier.customer', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='nonce', full_name='CustomerIdentifier.nonce', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=37,
+  serialized_end=101,
+)
 
 
 _BALANCEREQUEST = _descriptor.Descriptor(
@@ -54,8 +92,8 @@ _BALANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=37,
-  serialized_end=74,
+  serialized_start=103,
+  serialized_end=140,
 )
 
 
@@ -85,8 +123,8 @@ _BALANCES = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=76,
-  serialized_end=121,
+  serialized_start=142,
+  serialized_end=187,
 )
 
 
@@ -123,8 +161,8 @@ _ENROLLINBUSINESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=123,
-  serialized_end=198,
+  serialized_start=189,
+  serialized_end=264,
 )
 
 
@@ -154,16 +192,110 @@ _ENROLLINBUSINESSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=200,
-  serialized_end=243,
+  serialized_start=266,
+  serialized_end=309,
 )
 
+
+_AWAITREQ = _descriptor.Descriptor(
+  name='AwaitReq',
+  full_name='AwaitReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='AwaitReq.user_id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=311,
+  serialized_end=338,
+)
+
+
+_AWAITRSP = _descriptor.Descriptor(
+  name='AwaitRsp',
+  full_name='AwaitRsp',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='action', full_name='AwaitRsp.action', index=0,
+      number=4, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='point_change', full_name='AwaitRsp.point_change', index=1,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='business_id', full_name='AwaitRsp.business_id', index=2,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='business_name', full_name='AwaitRsp.business_name', index=3,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=340,
+  serialized_end=432,
+)
+
+_CUSTOMERIDENTIFIER.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 _BALANCES.fields_by_name['balances'].message_type = base__pb2._ACCOUNTBALANCE
 _ENROLLINBUSINESSREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
+DESCRIPTOR.message_types_by_name['CustomerIdentifier'] = _CUSTOMERIDENTIFIER
 DESCRIPTOR.message_types_by_name['BalanceRequest'] = _BALANCEREQUEST
 DESCRIPTOR.message_types_by_name['Balances'] = _BALANCES
 DESCRIPTOR.message_types_by_name['EnrollInBusinessRequest'] = _ENROLLINBUSINESSREQUEST
 DESCRIPTOR.message_types_by_name['EnrollInBusinessResponse'] = _ENROLLINBUSINESSRESPONSE
+DESCRIPTOR.message_types_by_name['AwaitReq'] = _AWAITREQ
+DESCRIPTOR.message_types_by_name['AwaitRsp'] = _AWAITRSP
+
+CustomerIdentifier = _reflection.GeneratedProtocolMessageType('CustomerIdentifier', (_message.Message,), dict(
+  DESCRIPTOR = _CUSTOMERIDENTIFIER,
+  __module__ = 'consumer_client_pb2'
+  # @@protoc_insertion_point(class_scope:CustomerIdentifier)
+  ))
+_sym_db.RegisterMessage(CustomerIdentifier)
 
 BalanceRequest = _reflection.GeneratedProtocolMessageType('BalanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _BALANCEREQUEST,
@@ -193,6 +325,20 @@ EnrollInBusinessResponse = _reflection.GeneratedProtocolMessageType('EnrollInBus
   ))
 _sym_db.RegisterMessage(EnrollInBusinessResponse)
 
+AwaitReq = _reflection.GeneratedProtocolMessageType('AwaitReq', (_message.Message,), dict(
+  DESCRIPTOR = _AWAITREQ,
+  __module__ = 'consumer_client_pb2'
+  # @@protoc_insertion_point(class_scope:AwaitReq)
+  ))
+_sym_db.RegisterMessage(AwaitReq)
+
+AwaitRsp = _reflection.GeneratedProtocolMessageType('AwaitRsp', (_message.Message,), dict(
+  DESCRIPTOR = _AWAITRSP,
+  __module__ = 'consumer_client_pb2'
+  # @@protoc_insertion_point(class_scope:AwaitRsp)
+  ))
+_sym_db.RegisterMessage(AwaitRsp)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\032com.loyaltysystem.customer'))
@@ -221,6 +367,11 @@ class CustomerServerStub(object):
         request_serializer=EnrollInBusinessRequest.SerializeToString,
         response_deserializer=EnrollInBusinessResponse.FromString,
         )
+    self.AwaitTransaction = channel.unary_stream(
+        '/CustomerServer/AwaitTransaction',
+        request_serializer=AwaitReq.SerializeToString,
+        response_deserializer=AwaitRsp.FromString,
+        )
 
 
 class CustomerServerServicer(object):
@@ -231,6 +382,11 @@ class CustomerServerServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def EnrollInBusiness(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def AwaitTransaction(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -248,6 +404,11 @@ def add_CustomerServerServicer_to_server(servicer, server):
           request_deserializer=EnrollInBusinessRequest.FromString,
           response_serializer=EnrollInBusinessResponse.SerializeToString,
       ),
+      'AwaitTransaction': grpc.unary_stream_rpc_method_handler(
+          servicer.AwaitTransaction,
+          request_deserializer=AwaitReq.FromString,
+          response_serializer=AwaitRsp.SerializeToString,
+      ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'CustomerServer', rpc_method_handlers)
@@ -259,6 +420,8 @@ class BetaCustomerServerServicer(object):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def EnrollInBusiness(self, request, context):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def AwaitTransaction(self, request, context):
+    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
 class BetaCustomerServerStub(object):
@@ -268,18 +431,23 @@ class BetaCustomerServerStub(object):
   def EnrollInBusiness(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     raise NotImplementedError()
   EnrollInBusiness.future = None
+  def AwaitTransaction(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    raise NotImplementedError()
 
 
 def beta_create_CustomerServer_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
   request_deserializers = {
+    ('CustomerServer', 'AwaitTransaction'): AwaitReq.FromString,
     ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessRequest.FromString,
     ('CustomerServer', 'GetBalances'): BalanceRequest.FromString,
   }
   response_serializers = {
+    ('CustomerServer', 'AwaitTransaction'): AwaitRsp.SerializeToString,
     ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessResponse.SerializeToString,
     ('CustomerServer', 'GetBalances'): Balances.SerializeToString,
   }
   method_implementations = {
+    ('CustomerServer', 'AwaitTransaction'): face_utilities.unary_stream_inline(servicer.AwaitTransaction),
     ('CustomerServer', 'EnrollInBusiness'): face_utilities.unary_unary_inline(servicer.EnrollInBusiness),
     ('CustomerServer', 'GetBalances'): face_utilities.unary_unary_inline(servicer.GetBalances),
   }
@@ -289,14 +457,17 @@ def beta_create_CustomerServer_server(servicer, pool=None, pool_size=None, defau
 
 def beta_create_CustomerServer_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
   request_serializers = {
+    ('CustomerServer', 'AwaitTransaction'): AwaitReq.SerializeToString,
     ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessRequest.SerializeToString,
     ('CustomerServer', 'GetBalances'): BalanceRequest.SerializeToString,
   }
   response_deserializers = {
+    ('CustomerServer', 'AwaitTransaction'): AwaitRsp.FromString,
     ('CustomerServer', 'EnrollInBusiness'): EnrollInBusinessResponse.FromString,
     ('CustomerServer', 'GetBalances'): Balances.FromString,
   }
   cardinalities = {
+    'AwaitTransaction': cardinality.Cardinality.UNARY_STREAM,
     'EnrollInBusiness': cardinality.Cardinality.UNARY_UNARY,
     'GetBalances': cardinality.Cardinality.UNARY_UNARY,
   }

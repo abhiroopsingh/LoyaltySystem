@@ -1,5 +1,6 @@
 package com.loyaltysystem.pointofsale;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,18 +21,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView info = (TextView)findViewById(R.id.shopInfo);
+
+        String businessName = PointOfSale.get().businessInfo(PointOfSale.get().savedAuth.getAuthorizedBusiness()).getName();
+        info.setText(
+                "Welcome, "+businessName+ " ("+PointOfSale.get().profile.getName() +")"
+        );
 
         Button accrue = (Button)findViewById(R.id.accrue_button);
-        final EditText amt = (EditText)findViewById(R.id.pointsbox);
-        final EditText cust = (EditText)findViewById(R.id.customerbox);
 
         accrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                PointOfSale.get().accrue(Integer.parseInt(cust.getText().toString()), Integer.parseInt(amt.getText().toString()));
+                Intent myIntent = new Intent(MainActivity.this, ScanUserActivity.class);
+                myIntent.putExtra("points", Integer.parseInt(
+                        ((EditText)findViewById(R.id.pointsEdit)).getText().toString()));
+                MainActivity.this.startActivity(myIntent);
             }
         });
+
+
     }
 
 }

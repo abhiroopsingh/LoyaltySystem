@@ -15,7 +15,7 @@ import io.grpc.ManagedChannelBuilder;
 
 public class LoyaltySys {
 
-    static final String HOST = "10.0.2.2";
+    static final String HOST = "104.236.205.162";
     static final int PORT = 50051;
 
 
@@ -25,7 +25,7 @@ public class LoyaltySys {
         return pos;
     }
 
-    public static Auth.UserAuth authenticate(String username, String password) {
+    public static Auth.DoAuthResponse authenticate(String username, String password) {
         ManagedChannel mc = ManagedChannelBuilder.forAddress(HOST, PORT).usePlaintext(true).build();
         LoginGrpc.LoginBlockingStub login = LoginGrpc.newBlockingStub(mc);
 
@@ -43,7 +43,7 @@ public class LoyaltySys {
             System.err.println("DID NOT AUTHENTICATE.");
         }
 
-        return resp.getAuth();
+        return resp;
     }
 
 

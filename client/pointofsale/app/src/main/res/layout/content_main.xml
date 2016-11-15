@@ -17,42 +17,29 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/shopInfo"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView2" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="81dp"
-        android:id="@+id/customerbox"
-        android:hint="Account To Credit" />
-
-    <Button
-        android:text="Accrue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/accrue_button"
-        android:layout_below="@+id/customerbox"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:layout_below="@+id/textView2"
+        android:id="@+id/pointsEdit"
+        android:hint="Points To Award"
+        android:layout_above="@+id/accrue_button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="33dp"
-        android:id="@+id/pointsbox"
-        android:hint="Points To Give" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Award Points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/accrue_button"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

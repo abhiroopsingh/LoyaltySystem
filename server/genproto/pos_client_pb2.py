@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='pos_client.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x10pos_client.proto\x1a\nbase.proto\"P\n\x0e\x41\x63\x63rualRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x03\x12\x14\n\x0cpoint_amount\x18\x03 \x01(\x05\"\"\n\x0f\x41\x63\x63rualResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"H\n\x11RedemptionRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x16\n\x0eopportunity_id\x18\x02 \x01(\x05\"6\n\x12RedemptionResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t2q\n\x0bPointOfSale\x12\x33\n\x06Redeem\x12\x12.RedemptionRequest\x1a\x13.RedemptionResponse\"\x00\x12-\n\x06\x41\x63\x63rue\x12\x0f.AccrualRequest\x1a\x10.AccrualResponse\"\x00\x42\x1f\n\x1d\x63om.loyaltysystem.pointofsaleb\x06proto3')
+  serialized_pb=_b('\n\x10pos_client.proto\x1a\nbase.proto\"P\n\x0e\x41\x63\x63rualRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\x12\x13\n\x0b\x62usiness_id\x18\x02 \x01(\x03\x12\x14\n\x0cpoint_amount\x18\x03 \x01(\x05\"\"\n\x0f\x41\x63\x63rualResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"H\n\x11RedemptionRequest\x12\x1b\n\x08\x63ustomer\x18\x01 \x01(\x0b\x32\t.Customer\x12\x16\n\x0eopportunity_id\x18\x02 \x01(\x05\"6\n\x12RedemptionResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x15\n\x07InfoReq\x12\n\n\x02id\x18\x01 \x01(\x03\"(\n\x0c\x42usinessInfo\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x32\x9f\x01\n\x0bPointOfSale\x12\x33\n\x06Redeem\x12\x12.RedemptionRequest\x1a\x13.RedemptionResponse\"\x00\x12-\n\x06\x41\x63\x63rue\x12\x0f.AccrualRequest\x1a\x10.AccrualResponse\"\x00\x12,\n\x0fGetBusinessInfo\x12\x08.InfoReq\x1a\r.BusinessInfo\"\x00\x42\x1f\n\x1d\x63om.loyaltysystem.pointofsaleb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -179,11 +179,82 @@ _REDEMPTIONRESPONSE = _descriptor.Descriptor(
   serialized_end=278,
 )
 
+
+_INFOREQ = _descriptor.Descriptor(
+  name='InfoReq',
+  full_name='InfoReq',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='InfoReq.id', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=280,
+  serialized_end=301,
+)
+
+
+_BUSINESSINFO = _descriptor.Descriptor(
+  name='BusinessInfo',
+  full_name='BusinessInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='BusinessInfo.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='BusinessInfo.id', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=303,
+  serialized_end=343,
+)
+
 _REDEMPTIONREQUEST.fields_by_name['customer'].message_type = base__pb2._CUSTOMER
 DESCRIPTOR.message_types_by_name['AccrualRequest'] = _ACCRUALREQUEST
 DESCRIPTOR.message_types_by_name['AccrualResponse'] = _ACCRUALRESPONSE
 DESCRIPTOR.message_types_by_name['RedemptionRequest'] = _REDEMPTIONREQUEST
 DESCRIPTOR.message_types_by_name['RedemptionResponse'] = _REDEMPTIONRESPONSE
+DESCRIPTOR.message_types_by_name['InfoReq'] = _INFOREQ
+DESCRIPTOR.message_types_by_name['BusinessInfo'] = _BUSINESSINFO
 
 AccrualRequest = _reflection.GeneratedProtocolMessageType('AccrualRequest', (_message.Message,), dict(
   DESCRIPTOR = _ACCRUALREQUEST,
@@ -213,6 +284,20 @@ RedemptionResponse = _reflection.GeneratedProtocolMessageType('RedemptionRespons
   ))
 _sym_db.RegisterMessage(RedemptionResponse)
 
+InfoReq = _reflection.GeneratedProtocolMessageType('InfoReq', (_message.Message,), dict(
+  DESCRIPTOR = _INFOREQ,
+  __module__ = 'pos_client_pb2'
+  # @@protoc_insertion_point(class_scope:InfoReq)
+  ))
+_sym_db.RegisterMessage(InfoReq)
+
+BusinessInfo = _reflection.GeneratedProtocolMessageType('BusinessInfo', (_message.Message,), dict(
+  DESCRIPTOR = _BUSINESSINFO,
+  __module__ = 'pos_client_pb2'
+  # @@protoc_insertion_point(class_scope:BusinessInfo)
+  ))
+_sym_db.RegisterMessage(BusinessInfo)
+
 
 DESCRIPTOR.has_options = True
 DESCRIPTOR._options = _descriptor._ParseOptions(descriptor_pb2.FileOptions(), _b('\n\035com.loyaltysystem.pointofsale'))
@@ -241,6 +326,11 @@ class PointOfSaleStub(object):
         request_serializer=AccrualRequest.SerializeToString,
         response_deserializer=AccrualResponse.FromString,
         )
+    self.GetBusinessInfo = channel.unary_unary(
+        '/PointOfSale/GetBusinessInfo',
+        request_serializer=InfoReq.SerializeToString,
+        response_deserializer=BusinessInfo.FromString,
+        )
 
 
 class PointOfSaleServicer(object):
@@ -251,6 +341,11 @@ class PointOfSaleServicer(object):
     raise NotImplementedError('Method not implemented!')
 
   def Accrue(self, request, context):
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def GetBusinessInfo(self, request, context):
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
@@ -268,6 +363,11 @@ def add_PointOfSaleServicer_to_server(servicer, server):
           request_deserializer=AccrualRequest.FromString,
           response_serializer=AccrualResponse.SerializeToString,
       ),
+      'GetBusinessInfo': grpc.unary_unary_rpc_method_handler(
+          servicer.GetBusinessInfo,
+          request_deserializer=InfoReq.FromString,
+          response_serializer=BusinessInfo.SerializeToString,
+      ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
       'PointOfSale', rpc_method_handlers)
@@ -279,6 +379,8 @@ class BetaPointOfSaleServicer(object):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
   def Accrue(self, request, context):
     context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
+  def GetBusinessInfo(self, request, context):
+    context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
 
 
 class BetaPointOfSaleStub(object):
@@ -288,19 +390,25 @@ class BetaPointOfSaleStub(object):
   def Accrue(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
     raise NotImplementedError()
   Accrue.future = None
+  def GetBusinessInfo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
+    raise NotImplementedError()
+  GetBusinessInfo.future = None
 
 
 def beta_create_PointOfSale_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
   request_deserializers = {
     ('PointOfSale', 'Accrue'): AccrualRequest.FromString,
+    ('PointOfSale', 'GetBusinessInfo'): InfoReq.FromString,
     ('PointOfSale', 'Redeem'): RedemptionRequest.FromString,
   }
   response_serializers = {
     ('PointOfSale', 'Accrue'): AccrualResponse.SerializeToString,
+    ('PointOfSale', 'GetBusinessInfo'): BusinessInfo.SerializeToString,
     ('PointOfSale', 'Redeem'): RedemptionResponse.SerializeToString,
   }
   method_implementations = {
     ('PointOfSale', 'Accrue'): face_utilities.unary_unary_inline(servicer.Accrue),
+    ('PointOfSale', 'GetBusinessInfo'): face_utilities.unary_unary_inline(servicer.GetBusinessInfo),
     ('PointOfSale', 'Redeem'): face_utilities.unary_unary_inline(servicer.Redeem),
   }
   server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
@@ -310,14 +418,17 @@ def beta_create_PointOfSale_server(servicer, pool=None, pool_size=None, default_
 def beta_create_PointOfSale_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
   request_serializers = {
     ('PointOfSale', 'Accrue'): AccrualRequest.SerializeToString,
+    ('PointOfSale', 'GetBusinessInfo'): InfoReq.SerializeToString,
     ('PointOfSale', 'Redeem'): RedemptionRequest.SerializeToString,
   }
   response_deserializers = {
     ('PointOfSale', 'Accrue'): AccrualResponse.FromString,
+    ('PointOfSale', 'GetBusinessInfo'): BusinessInfo.FromString,
     ('PointOfSale', 'Redeem'): RedemptionResponse.FromString,
   }
   cardinalities = {
     'Accrue': cardinality.Cardinality.UNARY_UNARY,
+    'GetBusinessInfo': cardinality.Cardinality.UNARY_UNARY,
     'Redeem': cardinality.Cardinality.UNARY_UNARY,
   }
   stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)

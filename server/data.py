@@ -1,5 +1,5 @@
 import attr
-
+import uuid
 # Represents the basic representations of domain objects that will be used in the system.
 
 
@@ -24,3 +24,4 @@ class AccountBalance(object):
 class Business(object):
     name = attr.ib()
     id = attr.ib()
+    thumbnail = attr.ib()
