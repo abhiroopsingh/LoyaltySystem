@@ -19,6 +19,7 @@ import android.widget.Toast;
  */
 public class ShowBarcodeActivity extends AppCompatActivity {
 
+    Customer.Canceller c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +30,17 @@ public class ShowBarcodeActivity extends AppCompatActivity {
 
     @Override
     public void onPostResume(){
+        super.onPostResume();
         loadQR();
     }
 
+    @Override
+    protected void onPause() {
+        if(c != null){
+            c.cancel();
+        }
+        super.onPause();
+    }
 
     public void loadQR(){
         ImageView bc = (ImageView)findViewById(R.id.barcodeView);
@@ -47,7 +56,7 @@ public class ShowBarcodeActivity extends AppCompatActivity {
                 }
         );
 
-        Customer.get().awaitAction(new Customer.ActionReceiver() {
+        c = Customer.get().awaitAction(new Customer.ActionReceiver() {
             @Override
             public void onAction(ConsumerClient.AwaitRsp rsp) {
                 if(rsp.getPointChange() > 0) {
@@ -58,7 +67,6 @@ public class ShowBarcodeActivity extends AppCompatActivity {
                 Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                 // Vibrate for 500 milliseconds
                 v.vibrate(500);
-
 
                 finish();
             }

@@ -30,7 +30,12 @@ public class BalancesDemo extends AppCompatActivity {
                 BalancesDemo.this.startActivity(new Intent(getApplicationContext(), ShowBarcodeActivity.class));
             }
         });
-        adapter = new BalancesCards.BalancesAdapter(balances());
+        adapter = new BalancesCards.BalancesAdapter(balances(), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BalancesDemo.this.startActivity(new Intent(getApplicationContext(), ShowBarcodeActivity.class));
+            }
+        });
         RecyclerView rv = (RecyclerView)findViewById(R.id.my_recycler_view);
         rv.setAdapter(adapter);
 

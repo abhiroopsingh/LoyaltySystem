@@ -17,8 +17,8 @@ class TestMemoryPersist(unittest.TestCase):
         ]
         self.fake_businesses = [
             data.Business(*d) for d in [
-            ["Gringotts", 1],
-            ["Flourish and Blotts", 2]
+            ["Gringotts", 1, "fakethumb"],
+            ["Flourish and Blotts", 2, "fakethumb"]
         ]]
 
         self.fake_accts = [

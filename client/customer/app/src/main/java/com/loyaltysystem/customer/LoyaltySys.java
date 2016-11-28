@@ -1,5 +1,7 @@
 package com.loyaltysystem.customer;
 
+import android.util.Pair;
+
 import com.loyaltysystem.auth.Auth;
 import com.loyaltysystem.auth.LoginGrpc;
 import com.loyaltysystem.pointofsale.PointOfSaleGrpc;
@@ -7,6 +9,7 @@ import com.loyaltysystem.pointofsale.PointOfSaleGrpc;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import io.grpc.Channel;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
@@ -16,8 +19,8 @@ import io.grpc.ManagedChannelBuilder;
 
 public class LoyaltySys {
 
-    //static final String HOST = "10.0.2.2";
-    static final String HOST = "104.236.205.162";
+    static final String HOST = "10.0.2.2";
+    //static final String HOST = "104.236.205.162";
     static final int PORT = 50051;
 
 
@@ -30,11 +33,13 @@ public class LoyaltySys {
     public static CustomerServerGrpc.CustomerServerBlockingStub connectCustomer(){
         ManagedChannel mc = ManagedChannelBuilder.forAddress(HOST, PORT).usePlaintext(true).build();
         CustomerServerGrpc.CustomerServerBlockingStub cus = CustomerServerGrpc.newBlockingStub(mc);
+
         return cus;
     }
 
-    public static Auth.DoAuthResponse authenticate(String username, String password) {
+    public static Pair<Auth.DoAuthResponse, ManagedChannel> authenticate(String username, String password) {
         ManagedChannel mc = ManagedChannelBuilder.forAddress(HOST, PORT).usePlaintext(true).build();
+
         LoginGrpc.LoginBlockingStub login = LoginGrpc.newBlockingStub(mc);
 
         // Start the authentication flow and recieve a challenge from the server.
@@ -51,7 +56,7 @@ public class LoyaltySys {
             System.err.println("DID NOT AUTHENTICATE.");
         }
 
-        return resp;
+        return new Pair<>(resp, mc);
     }
 
 

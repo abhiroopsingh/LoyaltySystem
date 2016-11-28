@@ -2,6 +2,7 @@ package com.loyaltysystem.customer;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.util.Pair;
 
 import com.loyaltysystem.auth.Auth;
 import com.loyaltysystem.base.Base;
@@ -9,6 +10,20 @@ import com.loyaltysystem.base.Base;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import io.grpc.CallOptions;
+import io.grpc.Channel;
+import io.grpc.ClientCall;
+import io.grpc.ManagedChannel;
+import io.grpc.Metadata;
+import io.grpc.Status;
+import io.grpc.okhttp.Headers;
+import io.grpc.stub.ClientCallStreamObserver;
+import io.grpc.stub.ClientCalls;
+import io.grpc.stub.ClientResponseObserver;
 
 /**
  * Created by gcolella on 10/31/16.
@@ -30,7 +45,9 @@ public class Customer {
 
     public Customer(String username, String password) {
         this.username = username;
-        Auth.DoAuthResponse dar = LoyaltySys.authenticate(username, password);
+        Pair<Auth.DoAuthResponse, ManagedChannel> p = LoyaltySys.authenticate(username, password);
+        Auth.DoAuthResponse dar = p.first;
+        channel = p.second;
         auth = dar.getAuth();
         profile = dar.getCustomer();
         client = LoyaltySys.connectCustomer();
@@ -43,51 +60,70 @@ public class Customer {
 
     String username;
     CustomerServerGrpc.CustomerServerBlockingStub client;
+    ManagedChannel channel;
     Auth.UserAuth auth;
     Base.Customer profile;
 
 
-    private class AwaitTask extends AsyncTask<Void, Void, ConsumerClient.AwaitRsp> {
+    public Canceller awaitAction(final ActionReceiver ar) {
+        System.out.println("Awaiting action!");
 
-        ActionReceiver receiver;
-        Iterator<ConsumerClient.AwaitRsp> responses;
 
-        public AwaitTask(Iterator<ConsumerClient.AwaitRsp> responses, ActionReceiver ar) {
-            receiver = ar;
-            this.responses = responses;
-        }
+        CallOptions co = CallOptions.DEFAULT.withExecutor(Executors.newSingleThreadExecutor());
+        final ClientCall<ConsumerClient.AwaitReq,ConsumerClient.AwaitRsp> cc =
+                channel.newCall(CustomerServerGrpc.METHOD_AWAIT_TRANSACTION, co);
 
-        protected ConsumerClient.AwaitRsp doInBackground(Void... urls) {
-            while(responses.hasNext()){
-                ConsumerClient.AwaitRsp arsp = responses.next();
-                System.err.println("Received response "+arsp.toString());
-                if(arsp.getAction()){
-                    return arsp;
-                }
+        ClientCalls.asyncServerStreamingCall(cc, ConsumerClient.AwaitReq.newBuilder().setUserId(Customer.get().auth.getId()).build(),
+                new ClientResponseObserver<ConsumerClient.AwaitReq,ConsumerClient.AwaitRsp>() {
+                    @Override
+                    public void beforeStart(ClientCallStreamObserver requestStream) {
+
+                    }
+
+                    @Override
+                    public void onNext(ConsumerClient.AwaitRsp value) {
+                        System.out.println("GOT RESPONSE");
+                        if(value.getAction()){
+                            ar.onAction(value);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+
+                    }
+
+                    @Override
+                    public void onCompleted() {
+
+                    }
+                });
+
+
+       // LoyaltySys.
+        Canceller c = new Canceller() {
+            @Override
+            public void cancel() {
+                cc.cancel("User cancelled", null);
             }
-            return null;
-        }
+        };
 
-        protected void onPostExecute(ConsumerClient.AwaitRsp result) {
-            receiver.onAction(result);
-        }
-    }
-
-    public void awaitAction(ActionReceiver ar) {
-        new AwaitTask(client.awaitTransaction(ConsumerClient.AwaitReq.newBuilder().setUserId(auth.getId()).build()),
-                ar).execute();
+        return c;
     }
 
 
-    public static interface ActionReceiver {
+    public interface ActionReceiver {
         void onAction(ConsumerClient.AwaitRsp rsp);
     }
 
     public List<Balance> getBalances() {
-        ConsumerClient.Balances resp = client.getBalances(
+        ConsumerClient.Balances resp = null;
+
+        resp = client.getBalances(
                 ConsumerClient.BalanceRequest.newBuilder()
                         .setCustomerId(auth.getId())
                         .build());
+
 
         List<Balance> balances = new ArrayList<Balance>();
         for(Base.AccountBalance ab : resp.getBalancesList()){
@@ -106,5 +142,9 @@ public class Customer {
             this.balance = balance;
             this.businessThumbnail = businessThumbnail;
         }
+    }
+
+    public interface Canceller {
+        void cancel();
     }
 }

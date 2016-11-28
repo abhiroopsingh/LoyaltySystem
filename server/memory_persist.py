@@ -104,6 +104,12 @@ class MemoryPersist(persistence.BasePersistence):
             AccountBalance.customerid,
             AccountBalance.id))
 
+        self._transactions = IndexedItems()
+        self._transactions.add_indexer(attr_index(
+            Transaction.businessid, Transaction.id))
+        self._transactions.add_indexer(attr_index(
+            Transaction.customerid, Transaction.id))
+
     def update_user(self, user):
         self._users.add(user)
         
@@ -121,4 +127,9 @@ class MemoryPersist(persistence.BasePersistence):
 
     def update_account(self, act):
         self.point_accounts.add(act)
-        
+
+    def transactions(self):
+        return persistence.Query(self._transactions)
+
+    def update_transaction(self, trans):
+        self._transactions.add(trans)

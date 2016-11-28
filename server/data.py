@@ -25,3 +25,14 @@ class Business(object):
     name = attr.ib()
     id = attr.ib()
     thumbnail = attr.ib()
+
+@attr.s
+class Transaction(object):
+    businessid = attr.ib()
+    customerid = attr.ib()
+    points = attr.ib()
+
+    # time stored as epoch s
+    time = attr.ib(validator=attr.validators.instance_of(int))
+    id = attr.ib(default=attr.Factory(uuid.uuid4))
+    

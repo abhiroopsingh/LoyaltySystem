@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "base.proto";
+
+option java_package = "com.loyaltysystem.transactions";
+
+message Transaction {
+	int64 id = 1;
+	Customer customer = 2;
+	Business business = 3;
+	int64 time_ms = 4;
+}
+
+message Transactions {
+	repeated Transaction transactions = 1;	
+}
+
+message CustomerRequest {
+	int64 customer_id = 1;
+}
+
+message BusinessRequest {
+	int64 business_id = 1;
+}
+
+service TransactionProvider {
+	rpc CustomerTransactions (CustomerRequest) returns (Transactions) {}
+	rpc BusinessTransactions(BusinessRequest) returns (Transactions) {}
+}

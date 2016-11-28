@@ -8,6 +8,10 @@ import time
 # Implementation of the CustomerServer service, that
 # handles customer-facing requests.
 
+# Time (seconds) between keep-alive messages
+# when awaiting notifications.
+KEEPALIVE_TIME = 0.1 
+
 class CustomerServer(cpb.CustomerServerServicer):
     def __init__(self, db, logger, notifier):
         self.db = db
@@ -51,19 +55,20 @@ class CustomerServer(cpb.CustomerServerServicer):
 
     def AwaitTransaction(self, request, context):
         x = []
+        self.log.info("Starting await for user {}", request.user_id)
         def update_x(itm):
-            print "Notifying awaiter on {}".format(request.user_id)
+            self.log.info("Notifying awaiter on {}",request.user_id)
             x.append(itm)
         self.notifier.add_waiter(request.user_id, update_x)
         nones = 0
         while not x:
-            time.sleep(.1)
+            time.sleep(KEEPALIVE_TIME)
             nones += 1
             if nones > 50:
                 yield cpb.AwaitRsp(action=False)
                 nones = 0
         businessid, name, change = x[0]
-        print "Returning await answer."
+        self.log.info("Returning await answer.")
         yield cpb.AwaitRsp(
             action=True,
             point_change = change,

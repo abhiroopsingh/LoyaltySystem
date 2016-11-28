@@ -47,3 +47,9 @@ class BasePersistence(object):
 
     def update_account(self, account):
         raise NotImplementedError()
+
+    def transactions(self):
+        raise NotImplementedError()
+
+    def update_transaction(self, transaction):
+        raise NotImplementedError()

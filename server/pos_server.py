@@ -2,7 +2,7 @@ from genproto import pos_client_pb2 as ppb
 from genproto import base_pb2 as bpb
 import data
 import util
-
+from datetime import datetime
 
 class SaleServer(ppb.PointOfSaleServicer):
     def __init__(self, db, logger, notifier):
@@ -35,6 +35,8 @@ class SaleServer(ppb.PointOfSaleServicer):
 
         self.log.info("Accruing {} points to customer {}", request.point_amount, cust_id)
         act.points += request.point_amount
+        trans = data.Transaction(bsn_id, cust_id, request.point_amount, int(datetime.now().strftime("%s")))
+        self.db.update_transaction(trans)
         self.db.update_account(act)
         self.notifier.notify(cust_id, (bsn_id, bsn_name, request.point_amount))
         return ppb.AccrualResponse(success=True)

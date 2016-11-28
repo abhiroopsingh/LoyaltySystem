@@ -16,6 +16,6 @@ def add_demo_data(db):
     db.update_account(AccountBalance(997, 0,7,8))
 
     # shopkeep.
-    db.update_user(User(0, "shopkeep", "Shopkeeper", "*****", "*****", 0))
+    db.update_user(User(2, "shopkeep", "Shopkeeper", "*****", "*****", 0))
 
 

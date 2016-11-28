@@ -41,6 +41,22 @@
             android:id="@+id/point_balance"
             android:textSize="18sp"/>
     </LinearLayout>
+        <ProgressBar
+            android:layout_below="@+id/business_image"
+            android:id="@+id/point_progress"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:indeterminate="false"
+            android:progress="0"
+            android:layout_toLeftOf="@+id/redeembutton"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+        <Button
+            android:id="@+id/redeembutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Redeem"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
         </RelativeLayout>
 
 

@@ -1,4 +1,4 @@
-from genproto import consumer_client_pb2, auth_pb2, pos_client_pb2
+from genproto import consumer_client_pb2, auth_pb2, pos_client_pb2, transactions_pb2
 import grpc
 import customer_handler
 import auth
@@ -7,6 +7,7 @@ import memory_persist
 import log
 import demo_data
 import notification_system
+import transaction_log
 from concurrent import futures
 
 from analytics import dashboard
@@ -19,6 +20,7 @@ def run_debug_ephemeral():
     an in-memory database."""
     logger = log.PrintLogger()
     db = memory_persist.MemoryPersist()
+    tlog = transaction_log.TransactionLog(db)
     demo_data.add_demo_data(db)
 
     notifier = notification_system.NotificationServer()
@@ -26,13 +28,14 @@ def run_debug_ephemeral():
     cust = customer_handler.CustomerServer(db, logger, notifier)
     auths = auth.FakeLoginSvc(db, logger)
     sales = pos_server.SaleServer(db, logger, notifier)
+    trans = transaction_log.TransactionProvider(db, tlog)
 
-    serve(PORT, db, auths, cust, sales)
+    serve(PORT, db, auths, cust, sales, trans)
 
 def show_analytics(port, auth, database):
     dashboard.start(database, port)
 
-def serve(port, database, auth_server, cust_server, sales):
+def serve(port, database, auth_server, cust_server, sales, transprov):
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
   consumer_client_pb2.add_CustomerServerServicer_to_server(
       cust_server, server)
@@ -41,6 +44,8 @@ def serve(port, database, auth_server, cust_server, sales):
   pos_client_pb2.add_PointOfSaleServicer_to_server(
       sales, server
       )
+  transactions_pb2.add_TransactionProviderServicer_to_server(
+      transprov, server)
   server.add_insecure_port('[::]:{}'.format(port))
   server.start()
   print("Serving on {}".format(port))
