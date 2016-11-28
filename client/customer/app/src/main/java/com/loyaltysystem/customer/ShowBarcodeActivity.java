@@ -58,17 +58,25 @@ public class ShowBarcodeActivity extends AppCompatActivity {
 
         c = Customer.get().awaitAction(new Customer.ActionReceiver() {
             @Override
-            public void onAction(ConsumerClient.AwaitRsp rsp) {
-                if(rsp.getPointChange() > 0) {
-                    Toast.makeText(ShowBarcodeActivity.this, "Earned " + rsp.getPointChange() + " from " + rsp.getBusinessName(), Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(ShowBarcodeActivity.this, "Spent "+rsp.getPointChange()+" at "+rsp.getBusinessName(), Toast.LENGTH_LONG).show();
-                }
-                Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                // Vibrate for 500 milliseconds
-                v.vibrate(500);
+            public void onAction(final ConsumerClient.AwaitRsp rsp) {
+                ShowBarcodeActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("Calling system.");
 
-                finish();
+                        if(rsp.getPointChange() > 0) {
+                            Toast.makeText(ShowBarcodeActivity.this, "Earned " + rsp.getPointChange() + " from " + rsp.getBusinessName(), Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(ShowBarcodeActivity.this, "Spent "+ -rsp.getPointChange()+" at "+rsp.getBusinessName(), Toast.LENGTH_LONG).show();
+                        }
+                        Vibrator v = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                        // Vibrate for 500 milliseconds
+                        v.vibrate(500);
+
+                        finish();
+                    }
+                });
+
             }
         });
     }

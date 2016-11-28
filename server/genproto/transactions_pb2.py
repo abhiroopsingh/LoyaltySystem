@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='transactions.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\x12transactions.proto\x1a\nbase.proto\"d\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1b\n\x08\x63ustomer\x18\x02 \x01(\x0b\x32\t.Customer\x12\x1b\n\x08\x62usiness\x18\x03 \x01(\x0b\x32\t.Business\x12\x0f\n\x07time_ms\x18\x04 \x01(\x03\"2\n\x0cTransactions\x12\"\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x0c.Transaction\"&\n\x0f\x43ustomerRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\"&\n\x0f\x42usinessRequest\x12\x13\n\x0b\x62usiness_id\x18\x01 \x01(\x03\x32\x8b\x01\n\x13TransactionProvider\x12\x39\n\x14\x43ustomerTransactions\x12\x10.CustomerRequest\x1a\r.Transactions\"\x00\x12\x39\n\x14\x42usinessTransactions\x12\x10.BusinessRequest\x1a\r.Transactions\"\x00\x42 \n\x1e\x63om.loyaltysystem.transactionsb\x06proto3')
+  serialized_pb=_b('\n\x12transactions.proto\x1a\nbase.proto\"z\n\x0bTransaction\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x1b\n\x08\x63ustomer\x18\x02 \x01(\x0b\x32\t.Customer\x12\x1b\n\x08\x62usiness\x18\x03 \x01(\x0b\x32\t.Business\x12\x0f\n\x07time_ms\x18\x04 \x01(\x03\x12\x14\n\x0cpoint_change\x18\x05 \x01(\x05\"2\n\x0cTransactions\x12\"\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x0c.Transaction\"&\n\x0f\x43ustomerRequest\x12\x13\n\x0b\x63ustomer_id\x18\x01 \x01(\x03\"&\n\x0f\x42usinessRequest\x12\x13\n\x0b\x62usiness_id\x18\x01 \x01(\x03\x32\x8b\x01\n\x13TransactionProvider\x12\x39\n\x14\x43ustomerTransactions\x12\x10.CustomerRequest\x1a\r.Transactions\"\x00\x12\x39\n\x14\x42usinessTransactions\x12\x10.BusinessRequest\x1a\r.Transactions\"\x00\x42 \n\x1e\x63om.loyaltysystem.transactionsb\x06proto3')
   ,
   dependencies=[base__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -63,6 +63,13 @@ _TRANSACTION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='point_change', full_name='Transaction.point_change', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -76,7 +83,7 @@ _TRANSACTION = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=34,
-  serialized_end=134,
+  serialized_end=156,
 )
 
 
@@ -106,8 +113,8 @@ _TRANSACTIONS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=136,
-  serialized_end=186,
+  serialized_start=158,
+  serialized_end=208,
 )
 
 
@@ -137,8 +144,8 @@ _CUSTOMERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=188,
-  serialized_end=226,
+  serialized_start=210,
+  serialized_end=248,
 )
 
 
@@ -168,8 +175,8 @@ _BUSINESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=228,
-  serialized_end=266,
+  serialized_start=250,
+  serialized_end=288,
 )
 
 _TRANSACTION.fields_by_name['customer'].message_type = base__pb2._CUSTOMER

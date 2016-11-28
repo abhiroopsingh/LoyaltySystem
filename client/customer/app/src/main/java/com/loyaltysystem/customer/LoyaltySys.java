@@ -19,8 +19,8 @@ import io.grpc.ManagedChannelBuilder;
 
 public class LoyaltySys {
 
-    static final String HOST = "10.0.2.2";
-    //static final String HOST = "104.236.205.162";
+    //static final String HOST = "10.0.2.2";
+    static final String HOST = "104.236.205.162";
     static final int PORT = 50051;
 
 

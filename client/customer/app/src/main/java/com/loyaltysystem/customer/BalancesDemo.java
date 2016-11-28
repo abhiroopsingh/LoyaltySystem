@@ -30,6 +30,15 @@ public class BalancesDemo extends AppCompatActivity {
                 BalancesDemo.this.startActivity(new Intent(getApplicationContext(), ShowBarcodeActivity.class));
             }
         });
+
+        Button history = (Button)findViewById(R.id.view_history);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BalancesDemo.this.startActivity(new Intent(getApplicationContext(), HistoryActivity.class));
+            }
+        });
+
         adapter = new BalancesCards.BalancesAdapter(balances(), new View.OnClickListener() {
             @Override
             public void onClick(View view) {

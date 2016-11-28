@@ -9,6 +9,7 @@ message Transaction {
 	Customer customer = 2;
 	Business business = 3;
 	int64 time_ms = 4;
+	int32 point_change = 5;
 }
 
 message Transactions {

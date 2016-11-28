@@ -53,7 +53,7 @@ public class BalancesCards {
         public BalancesAdapter(List<Customer.Balance> balances, View.OnClickListener earnClicked) {
             super();
             this.balances = balances;
-            earnClicked = earnClicked;
+            this.earnClicked = earnClicked;
         }
 
         @Override

@@ -1,4 +1,5 @@
 from data import *
+import datetime
 
 def add_demo_data(db):
     db.update_business(Business("Flourish And Botts", 0,
@@ -14,6 +15,15 @@ def add_demo_data(db):
     db.update_user(User(7, "granger", "Hermione Granger", "****"))
     db.update_account(AccountBalance(998, 1,7,10))
     db.update_account(AccountBalance(997, 0,7,8))
+
+    tme = int(datetime.datetime.now().strftime('%s'))
+    transactions = [
+        (0, 7, 2, tme - 60*60*2),
+        (0,7, 4, tme - 60*60*1),
+        (0, 7, 2, tme)
+        ]
+    for tdata in transactions:
+        db.update_transaction(Transaction(*tdata))
 
     # shopkeep.
     db.update_user(User(2, "shopkeep", "Shopkeeper", "*****", "*****", 0))

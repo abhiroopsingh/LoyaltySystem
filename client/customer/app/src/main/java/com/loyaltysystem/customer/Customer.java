@@ -6,6 +6,8 @@ import android.util.Pair;
 
 import com.loyaltysystem.auth.Auth;
 import com.loyaltysystem.base.Base;
+import com.loyaltysystem.transactions.TransactionProviderGrpc;
+import com.loyaltysystem.transactions.TransactionsOuterClass;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -110,6 +112,14 @@ public class Customer {
 
         return c;
     }
+
+    public List<TransactionsOuterClass.Transaction> getTransactions(){
+        TransactionProviderGrpc.TransactionProviderBlockingStub tpb = TransactionProviderGrpc.newBlockingStub(channel);
+        TransactionsOuterClass.Transactions ts = tpb.customerTransactions(
+                TransactionsOuterClass.CustomerRequest.newBuilder().setCustomerId(profile.getId()).build());
+        return ts.getTransactionsList();
+    }
+
 
 
     public interface ActionReceiver {

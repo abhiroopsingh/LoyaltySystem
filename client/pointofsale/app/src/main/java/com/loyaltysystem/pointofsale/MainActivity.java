@@ -40,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button redeem = (Button)findViewById(R.id.redeem_button);
+        redeem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, ScanUserActivity.class);
+                myIntent.putExtra("points", -100);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+
 
     }
 

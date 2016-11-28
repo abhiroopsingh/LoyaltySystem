@@ -1,4 +1,5 @@
 from genproto import transactions_pb2 as tpb
+import util
 
 class TransactionLog(object):
     def __init__(self, db):
