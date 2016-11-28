@@ -47,7 +47,7 @@ class CustomerServer(cpb.CustomerServerServicer):
                 businessid=request.business_id,
                 customerid=request.customer.id)
             self.db.update_account(new_acct)
-            self.log.info("Enrolled user {} in business {}.", request.customer.id,request.business.id)
+            self.log.info("Enrolled user {} in business {}.", request.customer.id,request.business_id)
             return cpb.EnrollInBusinessResponse(success=True)
 
         self.log.warn("Couldn't find the user ({}) or business ({}) to enroll.", request.customer,id, request.business.id)

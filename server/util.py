@@ -4,6 +4,7 @@
 from genproto import base_pb2 as bpb
 from genproto import transactions_pb2 as tpb
 from data import *
+from datetime import datetime
 
 def business_proto(business):
     return bpb.Business(
@@ -11,6 +12,9 @@ def business_proto(business):
         id = business.id,
         thumbnailurl = business.thumbnail,
     )
+
+def time_sec():
+    return int(datetime.now().strftime("%s"))
 
 def transaction(trans, db):
     tproto = tpb.Transaction()

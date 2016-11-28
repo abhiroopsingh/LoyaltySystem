@@ -15,6 +15,21 @@ class TestPosServer(unittest.TestCase):
         self.trans_log = transaction_log.TransactionLog(db)
         self.pos = pos_server.SaleServer(db, logger, notifier)
 
+
+    def test_bad_accrue(self):
+        x = []
+        def changex(act):
+            x.append(True)
+
+        self.notifier.add_waiter(0, changex)
+        resp = self.pos.Accrue(
+            ppb.AccrualRequest(
+                customer_id = -1, #no such customer
+                business_id = 0,
+                point_amount = 10), None)
+        self.assertFalse(resp.success)
+        self.assertFalse(any(x))
+        
     def test_accrue(self):
         x = []
         def changex(act):

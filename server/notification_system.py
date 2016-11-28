@@ -10,5 +10,5 @@ class NotificationServer(object):
     def notify(self,idn, obj):
         for itm in self.waiting_responses[idn]:
             itm(obj)
-        self.waiting_responses[obj] = []
+        self.waiting_responses[idn] = []
     

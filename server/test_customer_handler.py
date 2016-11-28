@@ -13,6 +13,23 @@ class TestCustomerServer(unittest.TestCase):
 
         self.cust = custhand.CustomerServer(db, logger, notifier)
 
+    def test_enroll(self):
+        rp = cpb.EnrollInBusinessRequest()
+        rp.customer.id = 0
+        rp.business_id = 1
+        rsp = self.cust.EnrollInBusiness(rp, None)
+        self.assertTrue(rsp.success)
+        self.assertEquals(len(self.db.accounts().where(customerid=0,businessid=1).all()),1)
+
+    def test_bad_enroll(self):
+        rp = cpb.EnrollInBusinessRequest()
+        rp.customer.id = 7
+        rp.business_id = 0
+        rsp = self.cust.EnrollInBusiness(rp, None)
+        # Already enrolled..
+        self.assertFalse(rsp.success)
+        self.assertEquals(len(self.db.accounts().where(customerid=7,businessid=0).all()),1)
+            
     def test_balances(self):
         rsp = self.cust.GetBalances(
             cpb.BalanceRequest(customer_id=7)
