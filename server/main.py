@@ -9,6 +9,7 @@ import demo_data
 import notification_system
 import transaction_log
 from concurrent import futures
+import util
 
 from analytics import dashboard
 
@@ -33,7 +34,7 @@ def run_debug_ephemeral():
     serve(PORT, db, auths, cust, sales, trans)
 
 def show_analytics(port, auth, database):
-    dashboard.start(database, port)
+    dashboard.start(database, port, util)
 
 def serve(port, database, auth_server, cust_server, sales, transprov):
   server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

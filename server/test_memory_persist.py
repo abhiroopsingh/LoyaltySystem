@@ -3,9 +3,11 @@ import memory_persist as mp
 import data
 
 class TestMemoryPersist(unittest.TestCase):
+    def get_persist(self):
+        return mp.MemoryPersist()
+    
     def setUp(self):
-        db = mp.MemoryPersist()
-        self.db = db
+        self.db = self.get_persist()
 
         self.fake_usrs = [
             data.User(*d) for d in [
